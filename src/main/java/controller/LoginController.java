@@ -39,7 +39,12 @@ public class LoginController implements Initializable {
     }    
 
     @FXML
-    private void loginBottonInAction(ActionEvent event) {
+    private void loginBottonOnAction(ActionEvent event){
+        if(txtUsuario.getText().isBlank() == false && passField.getText().isBlank() == false){
+            loginMessageLabel.setText("Error al iniciar sesion");
+        }else{
+            loginMessageLabel.setText("Ingresa usuario y contraseña");
+        }
     }
     
 }

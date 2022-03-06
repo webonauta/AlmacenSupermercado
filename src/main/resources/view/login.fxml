@@ -55,7 +55,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <PasswordField>
+                  <PasswordField fx:id="passField">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -71,7 +71,7 @@
                         <Insets left="15.0" right="15.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#loginBottonInAction" prefWidth="400.0" text="Ingresar">
+                  <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#loginBottonOnAction" prefWidth="400.0" text="Ingresar">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
@@ -97,4 +97,3 @@
       </VBox>
    </children>
 </HBox>
-
