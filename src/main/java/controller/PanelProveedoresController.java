@@ -6,7 +6,16 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -15,6 +24,23 @@ import javafx.fxml.Initializable;
  */
 public class PanelProveedoresController implements Initializable {
 
+    @FXML
+    private Label txtClientes;
+    @FXML
+    private Label txtProveedores;
+    @FXML
+    private Label txtProductos;
+    @FXML
+    private TextField fieldBuscar;
+    @FXML
+    private Button btnBuscar;
+    @FXML
+    private Button btnActualizar;
+    @FXML
+    private Button btnEliminar;
+    @FXML
+    private Button btnNuevo;
+
     /**
      * Initializes the controller class.
      */
@@ -22,5 +48,36 @@ public class PanelProveedoresController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    private void txtClientes(MouseEvent event) {
+        try {
+            FXMLLoader loaderClient = new FXMLLoader(getClass().getResource("/view/panelClientes.fxml"));
+            
+            Parent rootClient = loaderClient.load();
+            
+            PanelProveedoresController controlClient = loaderClient.getController();
+           
+            Scene sceneClient = new Scene(rootClient);
+           
+            
+        } catch (Exception e) {
+            
+        }
+    }
+    
+    private void textProductos(MouseEvent event) {
+        try {
+            FXMLLoader loaderProd = new FXMLLoader(getClass().getResource("/view/panelProductos.fxml"));
+            
+            Parent rootProd = loaderProd.load();
+            
+            PanelProveedoresController controlProd = loaderProd.getController();
+            
+            Scene sceneProd = new Scene(rootProd);
+            
+        } catch (Exception e) {
+            
+        }
+    }
     
 }

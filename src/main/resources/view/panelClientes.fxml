@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PanelCrudController">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PanelClientesController">
    <children>
       <VBox prefHeight="480.0" prefWidth="212.0" style="-fx-background-color: #3d5a80;">
          <children>
@@ -33,7 +33,7 @@
             </HBox>
             <HBox prefHeight="50.0" prefWidth="212.0">
                <children>
-                  <Label fx:id="txtProveedores" text="Proveedores" textFill="WHITE">
+                  <Label fx:id="txtProveedores" onMouseClicked="#txtProveedores" text="Proveedores" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -45,7 +45,7 @@
             </HBox>
             <HBox prefHeight="49.0" prefWidth="212.0">
                <children>
-                  <Label fx:id="txtProductos" text="Productos" textFill="WHITE">
+                  <Label fx:id="txtProductos" onMouseClicked="#txtProductos" text="Productos" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
