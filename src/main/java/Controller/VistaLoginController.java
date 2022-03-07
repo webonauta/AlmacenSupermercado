@@ -5,6 +5,8 @@
 package controller;
 
 
+import DAO.UsuariosDAO;
+import Model.UsuarioDTO;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -14,10 +16,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 /**
  * FXML Controller class
@@ -29,11 +27,11 @@ public class VistaLoginController implements Initializable {
     @FXML
     private TextField txtUsuario;
     @FXML
-    private PasswordField passField;
-    @FXML
     private Label loginMessageLabel;
     @FXML
     private Button btnLogin;
+    @FXML
+    private PasswordField txtPassword;
 
     /**
      * Initializes the controller class.
@@ -42,4 +40,15 @@ public class VistaLoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }   
+    
+    @FXML
+    private void validarUsuario(ActionEvent event) {
+        UsuarioDTO usuario = null;
+        UsuariosDAO u = new UsuariosDAO();
+        
+        usuario = u.validarUsuario(txtUsuario.getText(),txtPassword.getText());
+        
+        System.out.println("Te logeaste : " + usuario);
+    }
+
 }
