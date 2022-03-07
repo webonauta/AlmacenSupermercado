@@ -6,7 +6,6 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,7 +21,7 @@ import javafx.scene.input.MouseEvent;
  *
  * @author Alberto
  */
-public class PanelProveedoresController implements Initializable {
+public class VistaProductosController implements Initializable {
 
     @FXML
     private Label txtClientes;
@@ -48,14 +47,15 @@ public class PanelProveedoresController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+
+    @FXML
     private void txtClientes(MouseEvent event) {
         try {
             FXMLLoader loaderClient = new FXMLLoader(getClass().getResource("/view/panelClientes.fxml"));
             
             Parent rootClient = loaderClient.load();
             
-            PanelProveedoresController controlClient = loaderClient.getController();
+            VistaProveedoresController controlClient = loaderClient.getController();
            
             Scene sceneClient = new Scene(rootClient);
            
@@ -64,20 +64,22 @@ public class PanelProveedoresController implements Initializable {
             
         }
     }
-    
-    private void textProductos(MouseEvent event) {
+
+    @FXML
+    private void txtProveedores(MouseEvent event) {
         try {
-            FXMLLoader loaderProd = new FXMLLoader(getClass().getResource("/view/panelProductos.fxml"));
+            FXMLLoader loaderProv = new FXMLLoader(getClass().getResource("/view/panelProveedores.fxml"));
             
-            Parent rootProd = loaderProd.load();
+            Parent rootProv = loaderProv.load();
             
-            PanelProveedoresController controlProd = loaderProd.getController();
-            
-            Scene sceneProd = new Scene(rootProd);
+            VistaProveedoresController controlProv = loaderProv.getController();
+           
+            Scene sceneProv = new Scene(rootProv);
+           
             
         } catch (Exception e) {
             
         }
     }
-    
+
 }

@@ -4,7 +4,7 @@
  */
 package controller;
 
-import dao.LoginConnection;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -24,7 +24,7 @@ import java.sql.Statement;
  *
  * @author Alberto
  */
-public class LoginController implements Initializable {
+public class VistaLoginController implements Initializable {
 
     @FXML
     private TextField txtUsuario;

@@ -22,7 +22,7 @@ import javafx.scene.input.MouseEvent;
  *
  * @author Alberto
  */
-public class PanelClientesController implements Initializable {
+public class VistaProveedoresController implements Initializable {
 
     @FXML
     private Label txtClientes;
@@ -48,16 +48,16 @@ public class PanelClientesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    private void txtProveedores(MouseEvent event) {
+    
+    private void txtClientes(MouseEvent event) {
         try {
-            FXMLLoader loaderProv = new FXMLLoader(getClass().getResource("/view/panelProveedores.fxml"));
+            FXMLLoader loaderClient = new FXMLLoader(getClass().getResource("/view/panelClientes.fxml"));
             
-            Parent rootProv = loaderProv.load();
+            Parent rootClient = loaderClient.load();
             
-            VistaProveedoresController controlProv = loaderProv.getController();
+            VistaProveedoresController controlClient = loaderClient.getController();
            
-            Scene sceneProv = new Scene(rootProv);
+            Scene sceneClient = new Scene(rootClient);
            
             
         } catch (Exception e) {
