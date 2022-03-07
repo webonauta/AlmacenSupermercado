@@ -18,7 +18,7 @@
             <HBox prefHeight="114.0" prefWidth="212.0" />
             <HBox prefHeight="50.0" prefWidth="212.0">
                <children>
-                  <Label fx:id="txtClientes" onMouseClicked="#txtClientes" text="Clientes" textFill="WHITE">
+                  <Label fx:id="txtClientes" text="Clientes" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -33,7 +33,7 @@
             </HBox>
             <HBox prefHeight="50.0" prefWidth="212.0">
                <children>
-                  <Label fx:id="txtProveedores" onMouseClicked="#txtProveedores" text="Proveedores" textFill="WHITE">
+                  <Label fx:id="txtProveedores" text="Proveedores" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
