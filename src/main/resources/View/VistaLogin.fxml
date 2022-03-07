@@ -13,7 +13,7 @@
 
 <HBox maxWidth="850.0" prefHeight="320.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VistaLoginController">
    <children>
-      <VBox prefHeight="200.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
+      <VBox prefHeight="200.0" prefWidth="600.0" style="-fx-background-color: #f1faee;" HBox.hgrow="ALWAYS">
          <children>
             <Label text="Iniciar Sesion">
                <font>
