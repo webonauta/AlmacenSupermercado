@@ -22,7 +22,7 @@ import javafx.scene.input.MouseEvent;
  *
  * @author Alberto
  */
-public class PanelClientesController implements Initializable {
+public class VistaClientesController implements Initializable {
 
     @FXML
     private Label txtClientes;
