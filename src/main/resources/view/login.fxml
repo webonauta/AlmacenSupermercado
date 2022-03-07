@@ -90,7 +90,7 @@
          <children>
             <ImageView fitHeight="163.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../Downloads/ALMACEN.png" />
+                  <Image url="@../images/ALMACEN.png" />
                </image>
             </ImageView>
          </children>
