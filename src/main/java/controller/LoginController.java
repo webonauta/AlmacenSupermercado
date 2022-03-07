@@ -41,37 +41,5 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-
-    @FXML
-    private void loginBottonOnAction(ActionEvent event){
-        if(txtUsuario.getText().isBlank() == false && passField.getText().isBlank() == false){
-            //loginMessageLabel.setText("Error al iniciar sesion");
-            validateLogin();
-        }else{
-            loginMessageLabel.setText("Ingresa usuario y contraseña");
-        }
-    }
-    
-    public void validateLogin(){
-        LoginConnection connectNow = new LoginConnection();
-        Connection connectDB = connectNow.getConnection();
-        
-        String verifyLogin = "SELECT count(1) FROM usuarios WHERE id_usuario = '"+ txtUsuario.getText() +"' AND password = '" + passField.getText() +"'";
-        
-        try {
-            Statement statement = connectDB.createStatement();
-            ResultSet queryResult = statement.executeQuery(verifyLogin);
-            
-            while(queryResult.next()){
-                if(queryResult.getInt(1) == 1){
-                    loginMessageLabel.setText("Bienvenido");
-                }else{
-                    loginMessageLabel.setText("Datos incorrectos, intente de nuevo.");
-                }
-            }
-        } catch (Exception e) {
-        }
-    }
-    
+    }   
 }
