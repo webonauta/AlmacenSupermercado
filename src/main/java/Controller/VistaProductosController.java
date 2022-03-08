@@ -24,21 +24,27 @@ import javafx.scene.input.MouseEvent;
 public class VistaProductosController implements Initializable {
 
     @FXML
-    private Label txtClientes;
+    private TextField txtFieldBuscarProductos;
     @FXML
-    private Label txtProveedores;
+    private Button btnBuscarProductos;
     @FXML
-    private Label txtProductos;
+    private Button btnMenuProductos;
     @FXML
-    private TextField fieldBuscar;
+    private TextField txtFieldNombreProducto;
     @FXML
-    private Button btnBuscar;
+    private TextField txtFieldPrecioUnitarioProducto;
     @FXML
-    private Button btnActualizar;
+    private TextField txtFieldCategoriaProducto;
     @FXML
-    private Button btnEliminar;
+    private TextField txtFieldCantidadProducto;
     @FXML
-    private Button btnNuevo;
+    private Button btnNuevoProductos;
+    @FXML
+    private Button btnActualizarProductos;
+    @FXML
+    private Button btnEliminarProductos;
+
+   
 
     /**
      * Initializes the controller class.
@@ -48,7 +54,6 @@ public class VistaProductosController implements Initializable {
         // TODO
     }    
 
-    @FXML
     private void txtClientes(MouseEvent event) {
         try {
             FXMLLoader loaderClient = new FXMLLoader(getClass().getResource("/view/panelClientes.fxml"));
@@ -65,7 +70,6 @@ public class VistaProductosController implements Initializable {
         }
     }
 
-    @FXML
     private void txtProveedores(MouseEvent event) {
         try {
             FXMLLoader loaderProv = new FXMLLoader(getClass().getResource("/view/panelProveedores.fxml"));

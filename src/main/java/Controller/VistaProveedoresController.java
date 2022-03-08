@@ -25,21 +25,29 @@ import javafx.scene.input.MouseEvent;
 public class VistaProveedoresController implements Initializable {
 
     @FXML
-    private Label txtClientes;
+    private TextField txtFieldBuscarProveedor;
     @FXML
-    private Label txtProveedores;
+    private Button btnBuscarProveedor;
     @FXML
-    private Label txtProductos;
+    private Button btnMenuProveedor;
     @FXML
-    private TextField fieldBuscar;
+    private TextField txtFieldEmpresaProveedor;
     @FXML
-    private Button btnBuscar;
+    private TextField txtFieldRazonSocialProveedor;
     @FXML
-    private Button btnActualizar;
+    private TextField txtFieldClaveProveedor;
     @FXML
-    private Button btnEliminar;
+    private TextField txtFieldDireccionProveedor;
     @FXML
-    private Button btnNuevo;
+    private TextField txtFieldRFCProveedor;
+    @FXML
+    private Button btnNuevoProovedor;
+    @FXML
+    private Button btnActualizarProveedor;
+    @FXML
+    private Button btnEliminarProveedor;
+
+    
 
     /**
      * Initializes the controller class.
