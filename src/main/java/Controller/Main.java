@@ -43,11 +43,12 @@ public class Main extends Application {
         }catch(IOException e){
             System.out.println("E: "+e.getMessage());
         }
+    
     }
 
-    /**
-     * @param args the command line arguments
-     */
+    
+        
+        
     public static void main(String[] args) {
         launch(args);
     }
