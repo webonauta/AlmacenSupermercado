@@ -55,7 +55,7 @@
                         <Insets />
                      </VBox.margin>
                   </ImageView>
-                  <Button mnemonicParsing="false" text="Compras">
+                  <Button mnemonicParsing="false" text="Productos">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
