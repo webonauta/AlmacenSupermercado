@@ -15,7 +15,7 @@ public class UsuariosDAO {
     private ResultSet rs;
     private String sql;
     
-    public UsuarioDTO validarUsuario(String nombre,String password) {
+    public UsuarioDTO validarUsuario(String id_usuario,String password) {
             UsuarioDTO usuario = null;
         
         try {
@@ -28,17 +28,18 @@ public class UsuariosDAO {
             
             
             //declaro la consulta sql que se enviara por medio del PreparedStatement
-            sql = "SELECT * ";
+            sql = "SELECT id_usuario, nombre, paterno,materno ";
             sql += "FROM usuarios  ";
-            sql += "WHERE nombre=?  AND contraseña=?;";
+            sql += "WHERE id_usuario = ?  AND password = ?;";
             
             
             //preparo la consulta por medio de PreparedStatement 
             pstm=conexion.prepareStatement(sql);
             
             
-            pstm.setString(1,nombre);
-            pstm.setString(2,password);
+            pstm.setString(1, id_usuario);
+            pstm.setString(2, password);
+            
             
             
             //devuelve las tuplas de la consulta sql en uno bjeto ResultSet 
@@ -47,9 +48,11 @@ public class UsuariosDAO {
             while(rs.next()){
                 
                 usuario = new UsuarioDTO();
-                usuario.setIdUsuario(rs.getInt(1));
+                usuario.setIdUsuario(rs.getString(1));
                 usuario.setNombre(rs.getString(2));
-                usuario.setPassword(rs.getString(3));
+                usuario.setPaterno(rs.getString(3));
+                usuario.setMaterno(rs.getString(4));
+                
             }
             
             return usuario;

@@ -5,17 +5,17 @@ package Model;
  * @author Navarro Villa Emmanuel De Jesús
  */
 public class UsuarioDTO {
-    private int idUsuario;
+    private String idUsuario;
     private String password;
     private String nombre;
-    
-    
+    private String paterno;
+    private String materno;
 
-    public int getIdUsuario() {
+    public String getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -35,9 +35,29 @@ public class UsuarioDTO {
         this.nombre = nombre;
     }
 
+    public String getPaterno() {
+        return paterno;
+    }
+
+    public void setPaterno(String paterno) {
+        this.paterno = paterno;
+    }
+
+    public String getMaterno() {
+        return materno;
+    }
+
+    public void setMaterno(String materno) {
+        this.materno = materno;
+    }
+    
+    
+
+  
+
     @Override
     public String toString() {
-        return "id= " + idUsuario + " password= " + password + "nombre= " + nombre;
+        return "id= " + idUsuario + " password= " + password + "nombre= " + nombre + "paterno= " + paterno + "materno= " + materno;
     }
     
     
