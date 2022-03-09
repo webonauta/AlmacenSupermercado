@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -49,15 +50,19 @@ public class VistaProveedoresController implements Initializable {
         // TODO
     }    
     
-    private void txtClientes(MouseEvent event) {
+    @FXML
+    private void btnNuevoProveedores(ActionEvent event) {
         try {
-            FXMLLoader loaderClient = new FXMLLoader(getClass().getResource("/view/panelClientes.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/VistaAgregarProveedores.fxml"));
             
-            Parent rootClient = loaderClient.load();
+            Parent root = loader.load();
             
-            VistaProveedoresController controlClient = loaderClient.getController();
+            VistaProveedoresController control = loader.getController();
            
-            Scene sceneClient = new Scene(rootClient);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
            
             
         } catch (Exception e) {
@@ -65,15 +70,38 @@ public class VistaProveedoresController implements Initializable {
         }
     }
     
-    private void textProductos(MouseEvent event) {
+    @FXML
+    private void btnActualizarProveedores(ActionEvent event) {
         try {
-            FXMLLoader loaderProd = new FXMLLoader(getClass().getResource("/view/panelProductos.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/VistaAgregarProveedores.fxml"));
             
-            Parent rootProd = loaderProd.load();
+            Parent root = loader.load();
             
-            VistaProveedoresController controlProd = loaderProd.getController();
+            VistaProveedoresController control = loader.getController();
             
-            Scene sceneProd = new Scene(rootProd);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            
+        } catch (Exception e) {
+            
+        }
+    }
+    
+    @FXML
+    private void btnEliminarProveedores(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/VistaEliminar.fxml"));
+            
+            Parent root = loader.load();
+            
+            VistaProveedoresController control = loader.getController();
+            
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
             
         } catch (Exception e) {
             
