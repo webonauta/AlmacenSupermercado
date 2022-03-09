@@ -39,7 +39,7 @@
                         <Image url="@../Images/customers.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" text="Clientes">
+                  <Button fx:id="btnMenuClientes" mnemonicParsing="false" text="Clientes">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -55,7 +55,7 @@
                         <Insets />
                      </VBox.margin>
                   </ImageView>
-                  <Button mnemonicParsing="false" text="Productos">
+                  <Button fx:id="btnMenuProductos" mnemonicParsing="false" text="Productos">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -71,7 +71,7 @@
                         <Insets />
                      </VBox.margin>
                   </ImageView>
-                  <Button mnemonicParsing="false" text="Proveedores">
+                  <Button fx:id="btnMenuProveedores" mnemonicParsing="false" text="Proveedores">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
