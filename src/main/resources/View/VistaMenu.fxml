@@ -27,15 +27,7 @@
                         <Insets bottom="20.0" left="40.0" right="20.0" top="50.0" />
                      </HBox.margin>
                   </Label>
-                  <HBox prefHeight="174.0" prefWidth="235.0">
-                     <children>
-                        <Button mnemonicParsing="false" text="Salir">
-                           <HBox.margin>
-                              <Insets left="180.0" top="10.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                  </HBox>
+                  <HBox prefHeight="174.0" prefWidth="235.0" />
                </children></HBox>
          </children>
       </HBox>

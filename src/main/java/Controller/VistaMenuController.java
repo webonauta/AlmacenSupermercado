@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
@@ -20,6 +21,13 @@ import javafx.stage.Stage;
  */
 public class VistaMenuController implements Initializable {
 
+    @FXML
+    private Button btnMenuClientes;
+    @FXML
+    private Button btnMenuProductos;
+    @FXML
+    private Button btnMenuProveedores;
+
     /**
      * Initializes the controller class.
      */
@@ -28,7 +36,6 @@ public class VistaMenuController implements Initializable {
         // TODO
     }    
     
-    @FXML
     private void btnMenuClientes(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/VistaClientes.fxml"));
@@ -45,7 +52,6 @@ public class VistaMenuController implements Initializable {
         }
     }
     
-    @FXML
     private void btnMenuProductos(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/VistaProductos.fxml"));
@@ -62,7 +68,6 @@ public class VistaMenuController implements Initializable {
         }
     }
     
-    @FXML
     private void btnMenuProveedores(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/VistaProovedores.fxml"));
