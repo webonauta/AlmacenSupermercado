@@ -13,8 +13,21 @@ public class ProductoDTO {
     private int cantidad;
     private float precioUnitario;
     private float precioVenta;
-    private float descuento;
 
+    public ProductoDTO(String clave, String nombre, String descripcion, String categoria, String fechaAlta, int cantidad, float precioUnitario, float precioVenta) {
+        this.clave = clave;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.fechaAlta = fechaAlta;
+        this.cantidad = cantidad;
+        this.precioUnitario = precioUnitario;
+        this.precioVenta = precioVenta;
+    }
+   
+    
+    
+    
     public String getClave() {
         return clave;
     }
@@ -79,17 +92,11 @@ public class ProductoDTO {
         this.precioVenta = precioVenta;
     }
 
-    public float getDescuento() {
-        return descuento;
-    }
-
-    public void setDescuento(float descuento) {
-        this.descuento = descuento;
-    }
+    
 
     @Override
     public String toString() {
-        return "ProductoDTO{" + "clave=" + clave + ", nombre=" + nombre + ", descripcion=" + descripcion + ", categoria=" + categoria + ", fechaAlta=" + fechaAlta + ", cantidad=" + cantidad + ", precioUnitario=" + precioUnitario + ", precioVenta=" + precioVenta + ", descuento=" + descuento + '}';
+        return "ProductoDTO{" + "clave=" + clave + ", nombre=" + nombre + ", descripcion=" + descripcion + ", categoria=" + categoria + ", fechaAlta=" + fechaAlta + ", cantidad=" + cantidad + ", precioUnitario=" + precioUnitario + ", precioVenta=" + precioVenta + '}';
     }
     
     

@@ -30,7 +30,7 @@
                   <Insets left="10.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldClaveProducto" prefHeight="26.0" prefWidth="98.0">
+            <TextField fx:id="txtClave" prefHeight="26.0" prefWidth="98.0">
                <HBox.margin>
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
@@ -40,7 +40,7 @@
                   <Insets left="5.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldNombreProducto">
+            <TextField fx:id="txtNombre">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -53,7 +53,7 @@
                   <Insets left="5.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldDescripcionProducto">
+            <TextField fx:id="txtDescripcion">
                <HBox.margin>
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
@@ -67,7 +67,7 @@
                   <Insets left="10.0" top="17.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldCategoriaProducto" prefHeight="26.0" prefWidth="108.0">
+            <TextField fx:id="txtCategoria" prefHeight="26.0" prefWidth="108.0">
                <HBox.margin>
                   <Insets left="5.0" top="12.0" />
                </HBox.margin>
@@ -77,7 +77,7 @@
                   <Insets left="5.0" top="17.0" />
                </HBox.margin>
             </Label>
-            <DatePicker fx:id="datePickerFechaProducto" prefHeight="26.0" prefWidth="132.0">
+            <DatePicker fx:id="txtDate" prefHeight="26.0" prefWidth="132.0">
                <HBox.margin>
                   <Insets left="5.0" top="12.0" />
                </HBox.margin>
@@ -87,7 +87,7 @@
                   <Insets left="5.0" top="17.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldCantidadProducto" prefHeight="26.0" prefWidth="123.0">
+            <TextField fx:id="txtCantidad" prefHeight="26.0" prefWidth="123.0">
                <HBox.margin>
                   <Insets left="5.0" top="12.0" />
                </HBox.margin>
@@ -101,7 +101,7 @@
                   <Insets left="10.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldPrecioUnitarioProductos">
+            <TextField fx:id="txtPrecioUnitario">
                <HBox.margin>
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
@@ -111,14 +111,14 @@
                   <Insets left="5.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldPrecioVentaProductos">
+            <TextField fx:id="txtPrecioVenta">
                <HBox.margin>
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
             </TextField>
          </children>
       </HBox>
-      <Button fx:id="btnAgregarProductos" layoutX="291.0" layoutY="327.0" mnemonicParsing="false" text="Aceptar" />
+      <Button fx:id="btnAgregarProductos" layoutX="291.0" layoutY="327.0" mnemonicParsing="false" onAction="#agregarProducto" text="Aceptar" />
       <Button fx:id="btnRegresar" layoutX="220.0" layoutY="327.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
    </children>
 </AnchorPane>

@@ -4,9 +4,12 @@
  */
 package Controller;
 
+import DAO.ProductosDAO;
+import Model.ProductoDTO;
 import controller.Main;
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,27 +29,26 @@ import javafx.stage.Stage;
  * @author Alberto
  */
 public class VistaAgregarProductosController implements Initializable {
-
-    @FXML
-    private TextField txtFieldClaveProducto;
-    @FXML
-    private TextField txtFieldNombreProducto;
-    @FXML
-    private TextField txtFieldDescripcionProducto;
-    @FXML
-    private TextField txtFieldCategoriaProducto;
-    @FXML
-    private DatePicker datePickerFechaProducto;
-    @FXML
-    private TextField txtFieldCantidadProducto;
-    @FXML
-    private TextField txtFieldPrecioUnitarioProductos;
-    @FXML
-    private TextField txtFieldPrecioVentaProductos;
     @FXML
     private Button btnAgregarProductos;
     @FXML
     private Button btnRegresar;
+    @FXML
+    private TextField txtClave;
+    @FXML
+    private TextField txtNombre;
+    @FXML
+    private TextField txtDescripcion;
+    @FXML
+    private TextField txtCategoria;
+    @FXML
+    private DatePicker txtDate;
+    @FXML
+    private TextField txtCantidad;
+    @FXML
+    private TextField txtPrecioUnitario;
+    @FXML
+    private TextField txtPrecioVenta;
 
     /**
      * Initializes the controller class.
@@ -76,5 +78,17 @@ public class VistaAgregarProductosController implements Initializable {
             
             ((Stage) (btnAgregarProductos.getScene().getWindow())).close();
     }
+
+    @FXML
+    private void agregarProducto(ActionEvent event) {
+       ProductosDAO p =  new ProductosDAO();
+       String date = txtDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        
+       ProductoDTO producto = new ProductoDTO(txtClave.getText(),txtNombre.getText(),txtDescripcion.getText(),
+        txtCategoria.getText(),date,Integer.parseInt(txtCantidad.getText()),Float.valueOf(txtPrecioUnitario.getText()),Float.valueOf(txtPrecioVenta.getText()));
+       
+       p.insertarProducto(producto);
+    }
+    
     
 }
