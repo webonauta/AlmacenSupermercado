@@ -27,7 +27,15 @@
                         <Insets bottom="20.0" left="40.0" right="20.0" top="50.0" />
                      </HBox.margin>
                   </Label>
-                  <HBox prefHeight="174.0" prefWidth="235.0" />
+                  <HBox prefHeight="174.0" prefWidth="235.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="Salir">
+                           <HBox.margin>
+                              <Insets left="180.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
                </children></HBox>
          </children>
       </HBox>
@@ -40,7 +48,7 @@
                         <Image url="@../Images/customers.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="btnMenuClientes" mnemonicParsing="false" onAction="#clientes" text="Clientes">
+                  <Button fx:id="btnMenuClientes" mnemonicParsing="false" text="Clientes">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -56,7 +64,7 @@
                         <Insets />
                      </VBox.margin>
                   </ImageView>
-                  <Button fx:id="btnMenuProductos" mnemonicParsing="false" onAction="#productos" text="Productos">
+                  <Button fx:id="btnMenuProductos" mnemonicParsing="false" text="Productos">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -72,7 +80,7 @@
                         <Insets />
                      </VBox.margin>
                   </ImageView>
-                  <Button fx:id="btnMenuProveedores" mnemonicParsing="false" onAction="#proveedores" text="Proveedores">
+                  <Button fx:id="btnMenuProveedores" mnemonicParsing="false" text="Proveedores">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>

@@ -9,11 +9,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="486.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VistaAgregarProductosController">
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="486.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="Controller.VistaAgregarProductosController">
    <children>
       <HBox prefHeight="107.0" prefWidth="582.0" style="-fx-background-color: #1d3557;">
          <children>
-            <Label text="Agregar producto" textFill="WHITE">
+            <Label text="Agregar productos" textFill="WHITE">
                <font>
                   <Font size="35.0" />
                </font>
@@ -25,22 +26,22 @@
       </HBox>
       <HBox layoutY="126.0" prefHeight="55.0" prefWidth="582.0">
          <children>
-            <Label fx:id="lblClave" text="Clave">
+            <Label text="Clave">
                <HBox.margin>
                   <Insets left="10.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtClave" prefHeight="26.0" prefWidth="98.0">
+            <TextField fx:id="txtFieldClaveProducto" prefHeight="26.0" prefWidth="98.0">
                <HBox.margin>
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
             </TextField>
-            <Label fx:id="lblNombre" text="Nombre">
+            <Label text="Nombre">
                <HBox.margin>
                   <Insets left="5.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtNombre">
+            <TextField fx:id="txtFieldNombreProducto">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -48,12 +49,12 @@
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
             </TextField>
-            <Label fx:id="lblDescripcion" text="Descripcion">
+            <Label text="Descripcion">
                <HBox.margin>
                   <Insets left="5.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtDescripcion">
+            <TextField fx:id="txtFieldDescripcionProducto">
                <HBox.margin>
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
@@ -62,32 +63,32 @@
       </HBox>
       <HBox layoutY="182.0" prefHeight="68.0" prefWidth="582.0">
          <children>
-            <Label fx:id="lblCategoria" text="Categoria">
+            <Label text="Categoria">
                <HBox.margin>
                   <Insets left="10.0" top="17.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtCategoria" prefHeight="26.0" prefWidth="108.0">
+            <TextField fx:id="txtFieldCategoriaProducto" prefHeight="26.0" prefWidth="108.0">
                <HBox.margin>
                   <Insets left="5.0" top="12.0" />
                </HBox.margin>
             </TextField>
-            <Label fx:id="lblFechaAlta" text="Fecha de alta">
+            <Label text="Fecha de alta">
                <HBox.margin>
                   <Insets left="5.0" top="17.0" />
                </HBox.margin>
             </Label>
-            <DatePicker fx:id="txtDate" prefHeight="26.0" prefWidth="132.0">
+            <DatePicker fx:id="datePickerFechaProducto" prefHeight="26.0" prefWidth="132.0">
                <HBox.margin>
                   <Insets left="5.0" top="12.0" />
                </HBox.margin>
             </DatePicker>
-            <Label fx:id="lblCantidad" text="Cantidad">
+            <Label text="Cantidad">
                <HBox.margin>
                   <Insets left="5.0" top="17.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtCantidad" prefHeight="26.0" prefWidth="123.0">
+            <TextField fx:id="txtFieldCantidadProducto" prefHeight="26.0" prefWidth="123.0">
                <HBox.margin>
                   <Insets left="5.0" top="12.0" />
                </HBox.margin>
@@ -96,29 +97,28 @@
       </HBox>
       <HBox layoutY="250.0" prefHeight="83.0" prefWidth="582.0">
          <children>
-            <Label fx:id="lblPrecioUnitario" text="Precio unitario">
+            <Label text="Precio unitario">
                <HBox.margin>
                   <Insets left="10.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtPrecioUnitario">
+            <TextField fx:id="txtFieldPrecioUnitarioProductos">
                <HBox.margin>
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
             </TextField>
-            <Label fx:id="lblPrecioVenta" text="Precio venta">
+            <Label text="Precio venta">
                <HBox.margin>
                   <Insets left="5.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtPrecioVenta">
+            <TextField fx:id="txtFieldPrecioVentaProductos">
                <HBox.margin>
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
             </TextField>
          </children>
       </HBox>
-      <Button fx:id="btnAgregar" layoutX="496.0" layoutY="333.0" mnemonicParsing="false" onAction="#agregarProducto" text="Agregar" />
-      <Button fx:id="btnRegresar" layoutX="422.0" layoutY="333.0" mnemonicParsing="false" onAction="#regresarMenu" text="Regresar" />
+      <Button fx:id="btnAgregarProductos" layoutX="244.0" layoutY="333.0" mnemonicParsing="false" text="Aceptar" />
    </children>
 </AnchorPane>

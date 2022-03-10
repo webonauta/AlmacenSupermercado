@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author Alberto
  */
-public class VistaAgregarProductosController implements Initializable {
+public class VistaCerrarSesionController implements Initializable {
 
     /**
      * Initializes the controller class.
