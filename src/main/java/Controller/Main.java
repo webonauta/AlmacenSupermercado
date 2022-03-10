@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMain.java to edit this template
- */
 package controller;
 
 import DAO.Conexion;
@@ -24,7 +20,7 @@ public class Main extends Application {
         
         try{
             FXMLLoader loader = new FXMLLoader();//cardo la vista
-            loader.setLocation(Main.class.getResource("/View/VistaLogin.fxml"));
+            loader.setLocation(Main.class.getResource("/View/VistaAgregarProductos.fxml"));
             //cargo la ventana
             Pane ventana = (Pane) loader.load();
             Scene scene = new Scene(ventana);

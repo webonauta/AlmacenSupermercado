@@ -28,8 +28,8 @@ public class ProductosDAO {
             conexion.setAutoCommit(false);
             
             //declaro la consulta sql que se enviara por medio del PreparedStatement
-            sql="INSERT INTO productos(clave,nombre,descripcion,categoria,fecha_alta,cantidad,precio_unitario,precio_venta,descuento,id_usuario) ";
-            sql+=" VALUES(?,?,?,?,?,?,?,?,?);";
+            sql="INSERT INTO productos(clave,nombre,descripcion,categoria,fecha_alta,cantidad,precio_unitario,precio_venta) ";
+            sql+=" VALUES(?,?,?,?,?,?,?,?);";
             
             //preparo la consulta por medio de PreparedStatement 
             pstm=conexion.prepareStatement(sql);
@@ -44,7 +44,7 @@ public class ProductosDAO {
             pstm.setInt(6, producto.getCantidad());
             pstm.setFloat(7, producto.getPrecioUnitario());
             pstm.setFloat(8, producto.getPrecioVenta());
-            pstm.setFloat(9, producto.getDescuento());
+            
             
             
             //executeUpdate() devuelve el número de filas afectadas
