@@ -3,7 +3,7 @@ package DAO;
 import Model.ProductoDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
 
 /**
  *
@@ -12,7 +12,6 @@ import java.sql.ResultSet;
 public class ProductosDAO {
     private Connection conexion;
     private PreparedStatement pstm;
-    private ResultSet rs;
     private String sql;
     
     public void insertarProducto(ProductoDTO producto){

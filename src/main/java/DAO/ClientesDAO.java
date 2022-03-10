@@ -7,7 +7,7 @@ package DAO;
 import Model.ClienteDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
 
 /**
  *
@@ -16,15 +16,14 @@ import java.sql.ResultSet;
 public class ClientesDAO {
     private Connection conexion;
     private PreparedStatement pstm;
-    private ResultSet rs;
     private String sql;
     
-    private void insertaCliente(ClienteDTO cliente){
+    public void insertarCliente(ClienteDTO cliente){
         try {
             conexion = Conexion.getConnection();
             conexion.setAutoCommit(false);
             
-            sql = "INSERT INTO clientes(nombre, apellido_paterno, apellido_materno, telefono, direccion)";
+            sql = "INSERT INTO clientes(nombre, apellido_paterno, apellido_materno, telefono, direccion) ";
             sql += " VALUES(?, ?, ?, ?, ?);";
             
             pstm=conexion.prepareStatement(sql);

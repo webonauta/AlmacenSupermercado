@@ -4,6 +4,8 @@
  */
 package Controller;
 
+import DAO.ClientesDAO;
+import Model.ClienteDTO;
 import controller.Main;
 import java.io.IOException;
 import java.net.URL;
@@ -27,19 +29,19 @@ import javafx.stage.Stage;
 public class VistaAgregarClientesController implements Initializable {
 
     @FXML
-    private TextField txtFieldNombreCliente;
-    @FXML
-    private TextField txtFieldApellidoPaternoCliente;
-    @FXML
-    private TextField txtFieldApellidoMaternoCliente;
-    @FXML
-    private TextField txtFieldTelefonoCliente;
-    @FXML
-    private TextField txtFieldDireccionCliente;
-    @FXML
     private Button btnAgregarCliente;
     @FXML
     private Button btnRegresar;
+    @FXML
+    private TextField txtNombre;
+    @FXML
+    private TextField txtPaterno;
+    @FXML
+    private TextField txtMaterno;
+    @FXML
+    private TextField txtTelefono;
+    @FXML
+    private TextField txtDireccion;
 
     /**
      * Initializes the controller class.
@@ -67,6 +69,13 @@ public class VistaAgregarClientesController implements Initializable {
             primaryStage.show();
             
             ((Stage) (btnAgregarCliente.getScene().getWindow())).close();
+    }
+
+    @FXML
+    private void agregarCliente(ActionEvent event) {
+        ClientesDAO c = new ClientesDAO();
+        ClienteDTO cliente = new ClienteDTO(txtNombre.getText(),txtPaterno.getText(), txtMaterno.getText(), txtTelefono.getText(), txtDireccion.getText());
+        c.insertarCliente(cliente);
     }
     
 }

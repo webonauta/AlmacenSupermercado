@@ -15,6 +15,16 @@ public class ClienteDTO {
     private String telefono;
     private String direccion;
 
+    public ClienteDTO(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String direccion) {
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.telefono = telefono;
+        this.direccion = direccion;
+    }
+    
+    
+
     public String getNombre() {
         return nombre;
     }

@@ -29,7 +29,7 @@
                   <Insets left="10.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldNombreCliente" prefHeight="26.0" prefWidth="98.0">
+            <TextField fx:id="txtNombre" prefHeight="26.0" prefWidth="98.0">
                <HBox.margin>
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
@@ -39,7 +39,7 @@
                   <Insets left="5.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldApellidoPaternoCliente" prefHeight="26.0" prefWidth="115.0">
+            <TextField fx:id="txtPaterno" prefHeight="26.0" prefWidth="115.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -52,7 +52,7 @@
                   <Insets left="5.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldApellidoMaternoCliente">
+            <TextField fx:id="txtMaterno">
                <HBox.margin>
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
@@ -66,7 +66,7 @@
                   <Insets left="10.0" top="17.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldTelefonoCliente" prefHeight="26.0" prefWidth="95.0">
+            <TextField fx:id="txtTelefono" prefHeight="26.0" prefWidth="95.0">
                <HBox.margin>
                   <Insets left="5.0" top="12.0" />
                </HBox.margin>
@@ -76,14 +76,14 @@
                   <Insets left="5.0" top="17.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldDireccionCliente" prefHeight="26.0" prefWidth="407.0">
+            <TextField fx:id="txtDireccion" prefHeight="26.0" prefWidth="407.0">
                <HBox.margin>
                   <Insets left="5.0" top="12.0" />
                </HBox.margin>
             </TextField>
          </children>
       </HBox>
-      <Button fx:id="btnAgregarCliente" layoutX="343.0" layoutY="277.0" mnemonicParsing="false" text="Aceptar" />
+      <Button fx:id="btnAgregarCliente" layoutX="343.0" layoutY="277.0" mnemonicParsing="false" onAction="#agregarCliente" text="Agregar" />
       <Button fx:id="btnRegresar" layoutX="270.0" layoutY="277.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
    </children>
 </AnchorPane>
