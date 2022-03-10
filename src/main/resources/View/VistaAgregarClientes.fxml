@@ -83,6 +83,7 @@
             </TextField>
          </children>
       </HBox>
-      <Button fx:id="btnAgregarCliente" layoutX="275.0" layoutY="283.0" mnemonicParsing="false" text="Aceptar" />
+      <Button fx:id="btnAgregarCliente" layoutX="343.0" layoutY="277.0" mnemonicParsing="false" text="Aceptar" />
+      <Button fx:id="btnRegresar" layoutX="270.0" layoutY="277.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
    </children>
 </AnchorPane>

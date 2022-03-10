@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="486.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="Controller.VistaAgregarProductosController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="486.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VistaAgregarProductosController">
    <children>
       <HBox prefHeight="107.0" prefWidth="582.0" style="-fx-background-color: #1d3557;">
          <children>
@@ -119,6 +118,7 @@
             </TextField>
          </children>
       </HBox>
-      <Button fx:id="btnAgregarProductos" layoutX="244.0" layoutY="333.0" mnemonicParsing="false" text="Aceptar" />
+      <Button fx:id="btnAgregarProductos" layoutX="291.0" layoutY="327.0" mnemonicParsing="false" text="Aceptar" />
+      <Button fx:id="btnRegresar" layoutX="220.0" layoutY="327.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
    </children>
 </AnchorPane>
