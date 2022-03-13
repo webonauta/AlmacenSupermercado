@@ -13,10 +13,10 @@ import java.util.logging.Logger;
 public class Conexion {
     private static Connection con=null;
     private static String driver="com.mysql.cj.jdbc.Driver";
-    private static String password="qqQN9kixg4";
-    private static String usuario="sql3477143";
-    private static String bd="sql3477143";
-    private static String url="jdbc:mysql://sql3.freesqldatabase.com/"+bd;
+    private static String password="semillaLab@DBTest";
+    private static String usuario="semillal_root";
+    private static String bd="semillal_almacen";
+    private static String url="jdbc:mysql://162.241.60.208/"+bd;
 
 
 public static Connection getConnection(){

@@ -20,15 +20,16 @@ import javafx.stage.Stage;
 public class Main extends Application {
     
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws IOException {//este metodo inicia la aplicacion, primaryStage es la ventana principal(Jframe)
         
         try{
-            FXMLLoader loader = new FXMLLoader();//cardo la vista
+            FXMLLoader loader = new FXMLLoader();//cargo la vista
             loader.setLocation(Main.class.getResource("/View/VistaLogin.fxml"));
             //cargo la ventana
-            Pane ventana = (Pane) loader.load();
-            Scene scene = new Scene(ventana);
-            //seteo ka scene y la muestro
+            Pane ventana = (Pane) loader.load();//es un contenedor Panel que puede tener más componentes
+            Scene scene = new Scene(ventana);// es la zona donde está la interacion de los componentes
+            //seteo la scene y la muestro
+            primaryStage.setTitle("Nenis Market");
             primaryStage.setScene(scene);
             primaryStage.show();
             
