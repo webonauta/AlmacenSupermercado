@@ -17,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -39,7 +40,6 @@ public class VistaAgregarProductosController implements Initializable {
     private TextField txtNombre;
     @FXML
     private TextField txtDescripcion;
-    @FXML
     private TextField txtCategoria;
     @FXML
     private DatePicker txtDate;
@@ -49,6 +49,8 @@ public class VistaAgregarProductosController implements Initializable {
     private TextField txtPrecioUnitario;
     @FXML
     private TextField txtPrecioVenta;
+    @FXML
+    private ComboBox<String> cmbCategoria;
 
     /**
      * Initializes the controller class.
