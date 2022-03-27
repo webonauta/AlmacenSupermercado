@@ -5,6 +5,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -82,6 +83,65 @@ public class ProductosDAO {
     
     }
     
+     public ObservableList<ProductoDTO> getProductos() {
+           ObservableList<ProductoDTO> lista = FXCollections.observableArrayList();
+           ProductoDTO p; 
+           
+        try {
+            
+            //establezco la conexion de la base de datos con el metodo static de la clase Conexion
+            //Conexion implementa patron singleton,es decir, una sola conexion 
+            //y se cierra automaticamente cuando se cierra la aplicacion java
+            //conexion=Conexion.getConexion();
+            conexion = Conexion.getConnection();
+    
+            //declaro la consulta sql que se enviara por medio del PreparedStatement
+            sql = "SELECT clave,nombre,descripcion,categoria,fecha_alta,cantidad,precio_unitario,precio_venta ";
+            sql += " FROM productos; ";
+            
+            //preparo la consulta por medio de PreparedStatement 
+            pstm=conexion.prepareStatement(sql);
+           
+            //devuelve las tuplas de la consulta sql en uno bjeto ResultSet 
+            rs=pstm.executeQuery();
+            
+            while(rs.next()){
+                
+                p = new ProductoDTO();
+                
+                p.setClave(rs.getString("clave"));
+                p.setNombre(rs.getString("nombre"));
+                p.setDescripcion(rs.getString("descripcion"));
+                p.setCategoria(rs.getString("categoria"));
+                p.setFechaAlta(rs.getDate("fecha_alta")+"");
+                p.setCantidad(rs.getInt("cantidad"));
+                p.setPrecioUnitario(rs.getFloat("precio_unitario"));
+                p.setPrecioVenta(rs.getFloat("precio_venta"));
+               
+                lista.add(p);
+                
+            }
+            
+            return lista;
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
+        }finally{
+            try {
+                
+                if(rs!=null) rs.close();
+                if(pstm!=null) pstm.close();
+                
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                throw new RuntimeException(ex);
+            }
+             
+            
+        }
+        
+    } 
     
      public ObservableList<String> getCategorias(){
         ObservableList<String> lista = FXCollections.observableArrayList();

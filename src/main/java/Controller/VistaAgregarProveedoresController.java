@@ -57,7 +57,7 @@ public class VistaAgregarProveedoresController implements Initializable {
 
     @FXML
     private void regresar(ActionEvent event) throws IOException {
-        lanzarSiguienteVentana("VistaMenu.fxml");
+        lanzarSiguienteVentana("VistaProveedores.fxml");
 
     }
     

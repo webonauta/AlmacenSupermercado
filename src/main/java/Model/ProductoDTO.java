@@ -14,6 +14,12 @@ public class ProductoDTO {
     private float precioUnitario;
     private float precioVenta;
 
+    public ProductoDTO() {
+    }
+    
+    
+    
+
     public ProductoDTO(String clave, String nombre, String descripcion, String categoria, String fechaAlta, int cantidad, float precioUnitario, float precioVenta) {
         this.clave = clave;
         this.nombre = nombre;

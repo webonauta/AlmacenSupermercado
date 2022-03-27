@@ -4,18 +4,23 @@
  */
 package controller;
 
+import DAO.ProductosDAO;
+import Model.ProductoDTO;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -25,86 +30,93 @@ import javafx.stage.Stage;
  */
 public class VistaProductosController implements Initializable {
 
+    
     @FXML
-    private Label txtClientes;
+    private TableView<ProductoDTO> tblProductos;
     @FXML
-    private Label txtProveedores;
+    private TableColumn colClave;
     @FXML
-    private Label txtProductos;
+    private TableColumn colNombre;
     @FXML
-    private TextField fieldBuscar;
+    private TableColumn colDescripcion;
     @FXML
-    private Button btnBuscar;
+    private TableColumn colCategoria;
     @FXML
-    private Button btnActualizar;
+    private TableColumn colFechaAlta;
     @FXML
-    private Button btnEliminar;
+    private TableColumn colCantidad;
     @FXML
-    private Button btnNuevo;
+    private TableColumn colPrecioUnitario;
+    @FXML
+    private TableColumn colPrecioVenta;
+    @FXML
+    private TextField txtBuscarProducto;
+    @FXML
+    private Button btnBuscarProducto;
+    @FXML
+    private Button btnActualizarProducto;
+    @FXML
+    private Button btnEliminarProducto;
+    @FXML
+    private Button btnNuevoProducto;
+    @FXML
+    private Button btnMenu;
+   
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.colClave.setCellValueFactory(new PropertyValueFactory("clave"));
+        this.colNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
+        this.colDescripcion.setCellValueFactory(new PropertyValueFactory("descripcion"));
+        this.colCategoria.setCellValueFactory(new PropertyValueFactory("categoria"));
+        this.colFechaAlta.setCellValueFactory(new PropertyValueFactory("fechaAlta"));
+        this.colCantidad.setCellValueFactory(new PropertyValueFactory("cantidad"));
+        this.colPrecioUnitario.setCellValueFactory(new PropertyValueFactory("precioUnitario"));
+        this.colPrecioVenta.setCellValueFactory(new PropertyValueFactory("precioVenta"));
+        
+        ProductosDAO p = new ProductosDAO();
+        tblProductos.setItems(p.getProductos());
+        
     }    
-
+    
     @FXML
-    private void btnNuevoProductos(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/VistaAgregarProductos.fxml"));
-            
-            Parent root = loader.load();
-            
-            VistaProductosController control = loader.getController();
-           
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-           
-            
-        } catch (Exception e) {
-            
-        }
+    private void buscarProdcuto(ActionEvent event) {
     }
 
     @FXML
-    private void btnActualizarProductos(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/VistaAgregarProductos.fxml"));
-            
-            Parent root = loader.load();
-            
-            VistaProductosController control = loader.getController();
-           
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-           
-            
-        } catch (Exception e) {
-            
-        }
+    private void actualizarProducto(ActionEvent event) {
+    }
+
+    @FXML
+    private void eliminarProdcuto(ActionEvent event) {
+    }
+
+    @FXML
+    private void agregarProducto(ActionEvent event) throws IOException {
+        lanzarSiguienteVentana("VistaAgregarProductos.fxml");
     }
     
     @FXML
-    private void btnEliminarProductos(ActionEvent event){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/VistaEliminar.fxml"));
+    private void regresarMenu(ActionEvent event) throws IOException {
+        lanzarSiguienteVentana("VistaMenu.fxml");
+    }
+    
+    private void lanzarSiguienteVentana(String vista) throws IOException{
+            FXMLLoader loader = new FXMLLoader();//cardo la vista
+            loader.setLocation(Main.class.getResource("/View/"+vista));
+            //cargo la ventana
+            AnchorPane ventana = (AnchorPane) loader.load();
+            Scene scene = new Scene(ventana);//panel
+            //seteo ka scene y la muestro
+            Stage primaryStage = new Stage();//jframe
+            primaryStage.initModality(Modality.APPLICATION_MODAL);
+            primaryStage.setScene(scene);
+            primaryStage.show();
             
-            Parent root = loader.load();
-            
-            VistaProductosController control = loader.getController();
-            
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-        }
+            ((Stage) (btnNuevoProducto.getScene().getWindow())).close();
     }
 
 }

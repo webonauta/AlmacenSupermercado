@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -43,17 +42,17 @@ public class VistaMenuController implements Initializable {
     
     @FXML
     private void clientes(ActionEvent event) throws IOException {
-        lanzarSiguienteVentana("VistaAgregarClientes.fxml");
+        lanzarSiguienteVentana("VistaClientes.fxml");
     }
 
     @FXML
     private void productos(ActionEvent event) throws IOException {
-        lanzarSiguienteVentana("VistaAgregarProductos.fxml");
+        lanzarSiguienteVentana("VistaProductos.fxml");
     }
 
     @FXML
     private void proveedores(ActionEvent event) throws IOException {
-        lanzarSiguienteVentana("VistaAgregarProveedores.fxml");
+        lanzarSiguienteVentana("VistaProveedores.fxml");
     }
     
     private void lanzarSiguienteVentana(String vista) throws IOException{

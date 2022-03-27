@@ -4,18 +4,18 @@
  */
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -26,21 +26,18 @@ import javafx.stage.Stage;
 public class VistaProveedoresController implements Initializable {
 
     @FXML
-    private Label txtClientes;
+    private TextField txtBuscar;
     @FXML
-    private Label txtProveedores;
+    private Button btnBuscarProveedor;
     @FXML
-    private Label txtProductos;
+    private Button btnActualizarProveedor;
     @FXML
-    private TextField fieldBuscar;
+    private Button btnEliminarProveedor;
+   
     @FXML
-    private Button btnBuscar;
+    private Button btnMenu;
     @FXML
-    private Button btnActualizar;
-    @FXML
-    private Button btnEliminar;
-    @FXML
-    private Button btnNuevo;
+    private Button btnAgregarProveedor;
 
     /**
      * Initializes the controller class.
@@ -51,61 +48,40 @@ public class VistaProveedoresController implements Initializable {
     }    
     
     @FXML
-    private void btnNuevoProveedores(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/VistaAgregarProveedores.fxml"));
-            
-            Parent root = loader.load();
-            
-            VistaProveedoresController control = loader.getController();
-           
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-           
-            
-        } catch (Exception e) {
-            
-        }
+    private void buscarProveedor(ActionEvent event) {
+    }
+
+    @FXML
+    private void actualizarProveedor(ActionEvent event) {
+    }
+
+    @FXML
+    private void eliminarProveedor(ActionEvent event) {
+    }
+
+    @FXML
+    private void agregarProveedor(ActionEvent event) throws IOException {
+        lanzarSiguienteVentana("VistaAgregarProveedores.fxml");
+    }
+
+    @FXML
+    private void regresarMenu(ActionEvent event) throws IOException {
+        lanzarSiguienteVentana("VistaMenu.fxml");
     }
     
-    @FXML
-    private void btnActualizarProveedores(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/VistaAgregarProveedores.fxml"));
+    private void lanzarSiguienteVentana(String vista) throws IOException{
+            FXMLLoader loader = new FXMLLoader();//cardo la vista
+            loader.setLocation(Main.class.getResource("/View/"+vista));
+            //cargo la ventana
+            AnchorPane ventana = (AnchorPane) loader.load();
+            Scene scene = new Scene(ventana);//panel
+            //seteo ka scene y la muestro
+            Stage primaryStage = new Stage();//jframe
+            primaryStage.initModality(Modality.APPLICATION_MODAL);
+            primaryStage.setScene(scene);
+            primaryStage.show();
             
-            Parent root = loader.load();
-            
-            VistaProveedoresController control = loader.getController();
-            
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-            
-        } catch (Exception e) {
-            
-        }
-    }
-    
-    @FXML
-    private void btnEliminarProveedores(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/VistaEliminar.fxml"));
-            
-            Parent root = loader.load();
-            
-            VistaProveedoresController control = loader.getController();
-            
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-            
-        } catch (Exception e) {
-            
-        }
+            ((Stage) (btnAgregarProveedor.getScene().getWindow())).close();
     }
     
 }

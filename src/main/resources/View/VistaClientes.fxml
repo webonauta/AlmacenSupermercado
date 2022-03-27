@@ -25,7 +25,7 @@
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="fieldBuscarClientes" promptText="Ingresa telefono para buscar usuario">
+                  <TextField fx:id="txtdBuscarCliente" promptText="Ingresa telefono para buscar usuario">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" top="15.0" />
                      </VBox.margin>
@@ -34,7 +34,7 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="btnBuscarClientes" mnemonicParsing="false" text="BUSCAR">
+                  <Button fx:id="btnBuscarCliente" mnemonicParsing="false" onAction="#buscarCliente" text="BUSCAR">
                      <VBox.margin>
                         <Insets top="70.0" />
                      </VBox.margin>
@@ -43,7 +43,7 @@
             </VBox>
             <VBox prefHeight="114.0" prefWidth="90.0">
                <children>
-                  <Button fx:id="btnActualizarClientes" mnemonicParsing="false" text="ACTUALIZAR">
+                  <Button fx:id="btnActualizarCliente" mnemonicParsing="false" onAction="#actualizarCliente" text="ACTUALIZAR">
                      <VBox.margin>
                         <Insets top="70.0" />
                      </VBox.margin>
@@ -52,7 +52,7 @@
             </VBox>
             <VBox prefHeight="114.0" prefWidth="90.0">
                <children>
-                  <Button fx:id="btnEliminarClientes" mnemonicParsing="false" text="ELIMINAR">
+                  <Button fx:id="btnEliminarCliente" mnemonicParsing="false" onAction="#eliminarCliente" text="ELIMINAR">
                      <VBox.margin>
                         <Insets left="15.0" top="70.0" />
                      </VBox.margin>
@@ -61,7 +61,7 @@
             </VBox>
             <VBox prefHeight="114.0" prefWidth="90.0">
                <children>
-                  <Button fx:id="btnNuevoClientes" mnemonicParsing="false" text="AGREGAR">
+                  <Button fx:id="btnAgregarCliente" mnemonicParsing="false" onAction="#agregarCliente" text="AGREGAR">
                      <VBox.margin>
                         <Insets left="10.0" top="70.0" />
                      </VBox.margin>
@@ -70,7 +70,7 @@
             </VBox>
             <VBox prefHeight="114.0" prefWidth="214.0">
                <children>
-                  <Button fx:id="btnMenuClientes" mnemonicParsing="false" style="-fx-background-color: #1d3557;" text="Menu" textFill="WHITE">
+                  <Button fx:id="btnMenu" mnemonicParsing="false" onAction="#regresarMenu" style="-fx-background-color: #1d3557;" text="Menu" textFill="WHITE">
                      <VBox.margin>
                         <Insets left="140.0" top="10.0" />
                      </VBox.margin>

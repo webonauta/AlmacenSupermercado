@@ -4,18 +4,18 @@
  */
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -26,21 +26,17 @@ import javafx.stage.Stage;
 public class VistaClientesController implements Initializable {
 
     @FXML
-    private Label txtClientes;
+    private TextField txtdBuscarCliente;
     @FXML
-    private Label txtProveedores;
+    private Button btnBuscarCliente;
     @FXML
-    private Label txtProductos;
+    private Button btnActualizarCliente;
     @FXML
-    private TextField fieldBuscar;
+    private Button btnEliminarCliente;
     @FXML
-    private Button btnBuscar;
+    private Button btnAgregarCliente;
     @FXML
-    private Button btnActualizar;
-    @FXML
-    private Button btnEliminar;
-    @FXML
-    private Button btnNuevo;
+    private Button btnMenu;
 
     /**
      * Initializes the controller class.
@@ -49,58 +45,42 @@ public class VistaClientesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    @FXML
+    private void buscarCliente(ActionEvent event) {
+    }
 
     @FXML
-    private void btnNuevoClientes(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/VistaAgregarClientes.fxml"));
-            
-            Parent root = loader.load();
-            
-            VistaClientesController control = loader.getController();
-           
-            Scene scene = new Scene(root);
-           
-            
-        } catch (Exception e) {
-            
-        }
+    private void actualizarCliente(ActionEvent event) {
+    }
+
+    @FXML
+    private void eliminarCliente(ActionEvent event) {
+    }
+
+    @FXML
+    private void agregarCliente(ActionEvent event) throws IOException {
+         lanzarSiguienteVentana("VistaAgregarClientes.fxml");
+    }
+
+    @FXML
+    private void regresarMenu(ActionEvent event) throws IOException {
+         lanzarSiguienteVentana("VistaMenu.fxml");
     }
     
-    @FXML
-    private void btnActualizarClientes(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/VistaAgregarClientes.fxml"));
+     private void lanzarSiguienteVentana(String vista) throws IOException{
+            FXMLLoader loader = new FXMLLoader();//cardo la vista
+            loader.setLocation(Main.class.getResource("/View/"+vista));
+            //cargo la ventana
+            AnchorPane ventana = (AnchorPane) loader.load();
+            Scene scene = new Scene(ventana);//panel
+            //seteo ka scene y la muestro
+            Stage primaryStage = new Stage();//jframe
+            primaryStage.initModality(Modality.APPLICATION_MODAL);
+            primaryStage.setScene(scene);
+            primaryStage.show();
             
-            Parent root = loader.load();
-            
-            VistaClientesController control = loader.getController();
-            
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-            
-        } catch (Exception e) {
-            
-        }
-    }
-    
-    @FXML
-    private void btnEliminarClientes(ActionEvent event){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/VistaEliminar.fxml"));
-            
-            Parent root = loader.load();
-            
-            VistaClientesController control = loader.getController();
-            
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-        }
+            ((Stage) (btnAgregarCliente.getScene().getWindow())).close();
     }
     
 }

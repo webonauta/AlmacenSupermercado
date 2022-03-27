@@ -53,7 +53,7 @@ public class VistaAgregarClientesController implements Initializable {
 
     @FXML
     private void regresar(ActionEvent event) throws IOException {
-        lanzarSiguienteVentana("VistaMenu.fxml");
+        lanzarSiguienteVentana("VistaClientes.fxml");
     }
     
     private void lanzarSiguienteVentana(String vista) throws IOException{
