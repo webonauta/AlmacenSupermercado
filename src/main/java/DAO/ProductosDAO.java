@@ -1,8 +1,12 @@
 package DAO;
 
 import Model.ProductoDTO;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -13,6 +17,9 @@ public class ProductosDAO {
     private Connection conexion;
     private PreparedStatement pstm;
     private String sql;
+    private CallableStatement stmt;
+    private ResultSet rs;
+    
     
     public void insertarProducto(ProductoDTO producto){
         
@@ -63,6 +70,57 @@ public class ProductosDAO {
             try {
                 //rollback por las dudas
                 if(conexion!=null) conexion.rollback();
+                if(pstm!=null) pstm.close();
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+             
+            
+        }
+    
+    }
+    
+    
+     public ObservableList<String> getCategorias(){
+        ObservableList<String> lista = FXCollections.observableArrayList();
+        
+        try {
+            
+            //establezco la conexion de la base de datos con el metodo static de la clase Conexion
+            //Conexion implementa patron singleton,es decir, una sola conexion 
+            //y se cierra automaticamente cuando se cierra la aplicacion java
+            //conexion=Conexion.getConexion();
+            conexion = Conexion.getConnection();
+            
+            
+            //declaro la consulta sql que se enviara por medio del PreparedStatement
+            sql = "SELECT DISTINCT(categoria) ";
+            sql += " FROM productos; ";
+            
+            
+            //preparo la consulta por medio de PreparedStatement 
+            pstm=conexion.prepareStatement(sql);
+            
+            //devuelve las tuplas de la consulta sql en uno objeto ResultSet 
+            rs=pstm.executeQuery();
+            
+            while(rs.next()){
+              
+                lista.add(rs.getString(1));
+                
+            }
+            
+            return lista;
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }finally{
+            try {
+                
+                if(rs!=null) rs.close();
                 if(pstm!=null) pstm.close();
                 
             } catch (Exception e) {

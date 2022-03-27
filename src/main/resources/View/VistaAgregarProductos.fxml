@@ -68,7 +68,7 @@
                   <Insets left="10.0" top="17.0" />
                </HBox.margin>
             </Label>
-            <ComboBox fx:id="cmbCategoria" prefHeight="27.0" prefWidth="109.0">
+            <ComboBox fx:id="cmbCategoria" onMouseClicked="#llenarComBoxCategoria" prefHeight="27.0" prefWidth="109.0">
                <HBox.margin>
                   <Insets top="10.0" />
                </HBox.margin>
