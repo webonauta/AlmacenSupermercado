@@ -78,6 +78,7 @@ public class VistaClientesController implements Initializable {
             Stage primaryStage = new Stage();//jframe
             primaryStage.initModality(Modality.APPLICATION_MODAL);
             primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
             primaryStage.show();
             
             ((Stage) (btnAgregarCliente.getScene().getWindow())).close();

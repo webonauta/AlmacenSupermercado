@@ -114,6 +114,7 @@ public class VistaProductosController implements Initializable {
             Stage primaryStage = new Stage();//jframe
             primaryStage.initModality(Modality.APPLICATION_MODAL);
             primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
             primaryStage.show();
             
             ((Stage) (btnNuevoProducto.getScene().getWindow())).close();

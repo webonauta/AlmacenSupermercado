@@ -56,7 +56,15 @@ public class VistaAgregarClientesController implements Initializable {
         lanzarSiguienteVentana("VistaClientes.fxml");
     }
     
-    private void lanzarSiguienteVentana(String vista) throws IOException{
+ 
+    @FXML
+    private void agregarCliente(ActionEvent event) {
+        ClientesDAO c = new ClientesDAO();
+        ClienteDTO cliente = new ClienteDTO(txtNombre.getText(),txtPaterno.getText(), txtMaterno.getText(), txtTelefono.getText(), txtDireccion.getText());
+        c.insertarCliente(cliente);
+    }
+    
+     private void lanzarSiguienteVentana(String vista) throws IOException{
             FXMLLoader loader = new FXMLLoader();//cardo la vista
             loader.setLocation(Main.class.getResource("/View/"+vista));
             //cargo la ventana
@@ -66,16 +74,10 @@ public class VistaAgregarClientesController implements Initializable {
             Stage primaryStage = new Stage();//jframe
             primaryStage.initModality(Modality.APPLICATION_MODAL);
             primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
             primaryStage.show();
             
             ((Stage) (btnAgregarCliente.getScene().getWindow())).close();
-    }
-
-    @FXML
-    private void agregarCliente(ActionEvent event) {
-        ClientesDAO c = new ClientesDAO();
-        ClienteDTO cliente = new ClienteDTO(txtNombre.getText(),txtPaterno.getText(), txtMaterno.getText(), txtTelefono.getText(), txtDireccion.getText());
-        c.insertarCliente(cliente);
     }
     
 }

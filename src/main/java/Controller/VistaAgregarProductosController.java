@@ -70,22 +70,7 @@ public class VistaAgregarProductosController implements Initializable {
         lanzarSiguienteVentana("VistaProductos.fxml");
 
     }
-    
-     private void lanzarSiguienteVentana(String vista) throws IOException{
-            FXMLLoader loader = new FXMLLoader();//cardo la vista
-            loader.setLocation(Main.class.getResource("/View/"+vista));
-            //cargo la ventana
-            AnchorPane ventana = (AnchorPane) loader.load();
-            Scene scene = new Scene(ventana);//panel
-            //seteo ka scene y la muestro
-            Stage primaryStage = new Stage();//jframe
-            primaryStage.initModality(Modality.APPLICATION_MODAL);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            
-            ((Stage) (btnAgregarProductos.getScene().getWindow())).close();
-    }
-
+  
     @FXML
     private void agregarProducto(ActionEvent event) {
        ProductosDAO p =  new ProductosDAO();
@@ -132,5 +117,21 @@ public class VistaAgregarProductosController implements Initializable {
     @FXML
     private void accionCategoriaNueva(MouseEvent event) {
         cmbCategoria.setItems(null);
+    }
+    
+     private void lanzarSiguienteVentana(String vista) throws IOException{
+            FXMLLoader loader = new FXMLLoader();//cardo la vista
+            loader.setLocation(Main.class.getResource("/View/"+vista));
+            //cargo la ventana
+            AnchorPane ventana = (AnchorPane) loader.load();
+            Scene scene = new Scene(ventana);//panel
+            //seteo ka scene y la muestro
+            Stage primaryStage = new Stage();//jframe
+            primaryStage.initModality(Modality.APPLICATION_MODAL);
+            primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
+            primaryStage.show();
+            
+            ((Stage) (btnAgregarProductos.getScene().getWindow())).close();
     }
 }
