@@ -54,6 +54,8 @@ public class VistaAgregarProductosController implements Initializable {
     private TextField txtPrecioVenta;
     @FXML
     private ComboBox<String> cmbCategoria;
+    @FXML
+    private TextField txtCategoriaNueva;
 
     /**
      * Initializes the controller class.
@@ -87,20 +89,48 @@ public class VistaAgregarProductosController implements Initializable {
     @FXML
     private void agregarProducto(ActionEvent event) {
        ProductosDAO p =  new ProductosDAO();
-       String date = txtDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        
-       ProductoDTO producto = new ProductoDTO(txtClave.getText(),txtNombre.getText(),txtDescripcion.getText(),
-        cmbCategoria.getValue(),date,Integer.parseInt(txtCantidad.getText()),Float.valueOf(txtPrecioUnitario.getText()),Float.valueOf(txtPrecioVenta.getText()));
+       ProductoDTO producto = new ProductoDTO();
        
+       String clave = txtClave.getText();
+       String nombre = txtNombre.getText();
+       String descripcion = txtDescripcion.getText();
+       String categoriaExistente = cmbCategoria.getValue();
+       String categoriaNueva = txtCategoriaNueva.getText();
+       String date = txtDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+       int cantidad = Integer.parseInt(txtCantidad.getText());
+       float precioUnitario = Float.valueOf(txtPrecioUnitario.getText());
+       float precioVenta = Float.valueOf(txtPrecioVenta.getText()); 
+       
+       producto.setClave(clave);
+       producto.setNombre(nombre);
+       producto.setDescripcion(descripcion);
+       
+       if(categoriaExistente != null){
+           producto.setCategoria(categoriaExistente);
+       }
+       if(!categoriaNueva.equals("")){
+           producto.setCategoria(categoriaNueva);
+       }
+       
+       producto.setFechaAlta(date);
+       producto.setPrecioUnitario(precioUnitario);
+       producto.setPrecioVenta(precioVenta);
+     
        p.insertarProducto(producto);
     }
 
     @FXML
     private void llenarComBoxCategoria(MouseEvent event) {
+        txtCategoriaNueva.setText("");
         ProductosDAO p = new ProductosDAO();
         ObservableList<String> lista;
         lista = p.getCategorias();
         Collections.sort(lista);//ordeno la lista las categorias alfabeticamente
         cmbCategoria.setItems(lista);
+    }
+
+    @FXML
+    private void accionCategoriaNueva(MouseEvent event) {
+        cmbCategoria.setItems(null);
     }
 }

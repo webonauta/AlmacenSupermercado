@@ -63,12 +63,12 @@
       </HBox>
       <HBox layoutY="182.0" prefHeight="68.0" prefWidth="608.0">
          <children>
-            <Label prefHeight="17.0" prefWidth="64.0" text="Categoría:">
+            <Label prefHeight="17.0" prefWidth="109.0" text="Categoría existente:">
                <HBox.margin>
-                  <Insets left="10.0" top="17.0" />
+                  <Insets left="10.0" right="10.0" top="17.0" />
                </HBox.margin>
             </Label>
-            <ComboBox fx:id="cmbCategoria" onMouseClicked="#llenarComBoxCategoria" prefHeight="27.0" prefWidth="109.0">
+            <ComboBox fx:id="cmbCategoria" onMouseClicked="#llenarComBoxCategoria" prefHeight="27.0" prefWidth="97.0">
                <HBox.margin>
                   <Insets top="10.0" />
                </HBox.margin>
@@ -88,7 +88,7 @@
                   <Insets left="5.0" top="17.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtCantidad" prefHeight="26.0" prefWidth="130.0">
+            <TextField fx:id="txtCantidad" prefHeight="26.0" prefWidth="73.0">
                <HBox.margin>
                   <Insets left="5.0" top="12.0" />
                </HBox.margin>
@@ -97,12 +97,22 @@
       </HBox>
       <HBox layoutY="250.0" prefHeight="83.0" prefWidth="582.0">
          <children>
+            <Label prefHeight="17.0" prefWidth="96.0" text="Categoría nueva:">
+               <HBox.margin>
+                  <Insets left="10.0" top="15.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="txtCategoriaNueva" onMouseClicked="#accionCategoriaNueva" prefHeight="25.0" prefWidth="105.0">
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </TextField>
             <Label text="Precio unitario:">
                <HBox.margin>
                   <Insets left="10.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtPrecioUnitario">
+            <TextField fx:id="txtPrecioUnitario" prefHeight="25.0" prefWidth="82.0">
                <HBox.margin>
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
@@ -112,14 +122,14 @@
                   <Insets left="5.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtPrecioVenta">
+            <TextField fx:id="txtPrecioVenta" prefHeight="25.0" prefWidth="86.0">
                <HBox.margin>
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
             </TextField>
          </children>
       </HBox>
-      <Button fx:id="btnAgregarProductos" layoutX="291.0" layoutY="327.0" mnemonicParsing="false" onAction="#agregarProducto" prefHeight="25.0" prefWidth="68.0" text="Aceptar" />
-      <Button fx:id="btnRegresar" layoutX="220.0" layoutY="327.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
+      <Button fx:id="btnAgregarProductos" layoutX="322.0" layoutY="327.0" mnemonicParsing="false" onAction="#agregarProducto" prefHeight="25.0" prefWidth="82.0" text="Aceptar" />
+      <Button fx:id="btnRegresar" layoutX="221.0" layoutY="327.0" mnemonicParsing="false" onAction="#regresar" prefHeight="25.0" prefWidth="80.0" text="Regresar" />
    </children>
 </AnchorPane>
