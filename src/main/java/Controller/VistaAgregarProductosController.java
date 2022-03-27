@@ -10,7 +10,9 @@ import controller.Main;
 import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -40,7 +43,7 @@ public class VistaAgregarProductosController implements Initializable {
     private TextField txtNombre;
     @FXML
     private TextField txtDescripcion;
-    private TextField txtCategoria;
+   
     @FXML
     private DatePicker txtDate;
     @FXML
@@ -87,10 +90,17 @@ public class VistaAgregarProductosController implements Initializable {
        String date = txtDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         
        ProductoDTO producto = new ProductoDTO(txtClave.getText(),txtNombre.getText(),txtDescripcion.getText(),
-        txtCategoria.getText(),date,Integer.parseInt(txtCantidad.getText()),Float.valueOf(txtPrecioUnitario.getText()),Float.valueOf(txtPrecioVenta.getText()));
+        cmbCategoria.getValue(),date,Integer.parseInt(txtCantidad.getText()),Float.valueOf(txtPrecioUnitario.getText()),Float.valueOf(txtPrecioVenta.getText()));
        
        p.insertarProducto(producto);
     }
-    
-    
+
+    @FXML
+    private void llenarComBoxCategoria(MouseEvent event) {
+        ProductosDAO p = new ProductosDAO();
+        ObservableList<String> lista;
+        lista = p.getCategorias();
+        Collections.sort(lista);//ordeno la lista las categorias alfabeticamente
+        cmbCategoria.setItems(lista);
+    }
 }
