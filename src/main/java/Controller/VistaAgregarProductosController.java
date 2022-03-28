@@ -98,6 +98,7 @@ public class VistaAgregarProductosController implements Initializable {
        }
        
        producto.setFechaAlta(date);
+       producto.setCantidad(cantidad);
        producto.setPrecioUnitario(precioUnitario);
        producto.setPrecioVenta(precioVenta);
      
