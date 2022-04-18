@@ -106,7 +106,7 @@ public class VistaClientesController implements Initializable {
         else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
-            alert.setTitle("Error");
+            alert.setTitle("Advertencia");
             alert.setContentText("Debes seleccionar cliente");
             alert.show();
         }
@@ -122,7 +122,14 @@ public class VistaClientesController implements Initializable {
          lanzarSiguienteVentana("VistaMenu.fxml");
     }
     
-     private void lanzarSiguienteVentana(String vista) throws IOException{
+    
+    @FXML
+    private void seleccionarCliente(MouseEvent event) {
+        clienteSeleccionado = this.tblClientes.getSelectionModel().getSelectedItem();
+        System.out.println(clienteSeleccionado);
+    }
+    
+    private void lanzarSiguienteVentana(String vista) throws IOException{
             FXMLLoader loader = new FXMLLoader();//cardo la vista
             loader.setLocation(Main.class.getResource("/View/"+vista));
             //cargo la ventana
@@ -138,10 +145,6 @@ public class VistaClientesController implements Initializable {
             ((Stage) (btnAgregarCliente.getScene().getWindow())).close();
     }
 
-    @FXML
-    private void seleccionarCliente(MouseEvent event) {
-        clienteSeleccionado = this.tblClientes.getSelectionModel().getSelectedItem();
-        System.out.println(clienteSeleccionado);
-    }
+    
     
 }

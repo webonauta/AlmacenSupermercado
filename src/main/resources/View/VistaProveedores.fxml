@@ -84,7 +84,7 @@
       </HBox>
       <HBox layoutY="113.0" prefHeight="367.0" prefWidth="851.0" style="-fx-background-color: #f1faee;">
          <children>
-            <TableView fx:id="tblProveedores" prefHeight="367.0" prefWidth="853.0">
+            <TableView fx:id="tblProveedores" onMouseClicked="#seleccionarProveedor" prefHeight="367.0" prefWidth="853.0">
               <columns>
                 <TableColumn fx:id="colNombre" prefWidth="89.0" text="Nombre" />
                   <TableColumn fx:id="colPaterno" prefWidth="149.0" text="Apellido Paterno" />

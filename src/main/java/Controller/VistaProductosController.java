@@ -116,7 +116,7 @@ public class VistaProductosController implements Initializable {
         else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
-            alert.setTitle("Error");
+            alert.setTitle("Advertencia");
             alert.setContentText("Debes seleccionar producto");
             alert.show();
         }
