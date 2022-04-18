@@ -9,6 +9,7 @@ import Model.ProductoDTO;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,7 +66,8 @@ public class VistaProductosController implements Initializable {
     @FXML
     private Button btnMenu;
     private ProductoDTO productoSeleccionado = null;
-   
+    private ProductosDAO p;
+    private ObservableList<ProductoDTO> listaProductos;
 
     /**
      * Initializes the controller class.
@@ -81,8 +83,9 @@ public class VistaProductosController implements Initializable {
         this.colPrecioUnitario.setCellValueFactory(new PropertyValueFactory("precioUnitario"));
         this.colPrecioVenta.setCellValueFactory(new PropertyValueFactory("precioVenta"));
         
-        ProductosDAO p = new ProductosDAO();
-        tblProductos.setItems(p.getProductos());
+        p = new ProductosDAO();
+        listaProductos = p.getProductos();
+        tblProductos.setItems(listaProductos);
         
     }    
     
@@ -96,6 +99,7 @@ public class VistaProductosController implements Initializable {
 
      @FXML
     private void eliminarProducto(ActionEvent event) {
+        ProductosDAO p = new ProductosDAO();
         if(productoSeleccionado!= null){
             
               Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "¿Eliminar producto seleccionado?", ButtonType.YES, ButtonType.NO);
@@ -104,7 +108,9 @@ public class VistaProductosController implements Initializable {
               ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
 
               if (!ButtonType.NO.equals(result)) {
-                  System.out.println("Producto Eliminado");
+                  p.eliminarProducto(productoSeleccionado);
+                  listaProductos.remove(productoSeleccionado);
+                  tblProductos.refresh();
                 }
         }
         else{

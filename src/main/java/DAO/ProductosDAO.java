@@ -83,6 +83,58 @@ public class ProductosDAO {
     
     }
     
+     public void eliminarProducto(ProductoDTO producto){
+        
+        try {
+            
+            //establezco la conexion de la base de datos con el metodo static de la clase Conexion
+            //Conexion implementa patron singleton,es decir, una sola conexion 
+            //y se cierra automaticamente cuando se cierra la aplicacion java
+            //conexion=Conexion.getConexion();
+            conexion = Conexion.getConnection();
+            //desactivo autoCommit
+            conexion.setAutoCommit(false);
+            
+            //declaro la consulta sql que se enviara por medio del PreparedStatement
+            sql="DELETE FROM productos ";
+            sql+=" WHERE clave = ? ;";
+            
+            //preparo la consulta por medio de PreparedStatement 
+            pstm=conexion.prepareStatement(sql);
+            
+            //seteamos(actualizamos) los valores de la sentencia  sql parametrizada(?,?,?...etc)
+            //pasandole en orden los parametros de un EstudianteDTO de acuerdo a la tabla que vamos insertar
+            pstm.setString(1, producto.getClave());
+            
+            //executeUpdate() devuelve el número de filas afectadas
+            int resultado=pstm.executeUpdate();
+            if (resultado>0) {
+                //// todo OK entonces commiteo la operacion
+                conexion.commit();
+                System.out.println("Producto Borrado correctamente");
+            } else {
+                throw new RuntimeException("Producto no borrado correctamente");
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }finally{
+            try {
+                //rollback por las dudas
+                if(conexion!=null) conexion.rollback();
+                if(pstm!=null) pstm.close();
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+             
+            
+        }
+    
+    }
+    
      public ObservableList<ProductoDTO> getProductos() {
            ObservableList<ProductoDTO> lista = FXCollections.observableArrayList();
            ProductoDTO p; 
