@@ -4,6 +4,9 @@
  */
 package controller;
 
+import DAO.ClientesDAO;
+import DAO.ProveedoresDAO;
+import Model.ClienteDTO;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,7 +16,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -37,13 +43,31 @@ public class VistaClientesController implements Initializable {
     private Button btnAgregarCliente;
     @FXML
     private Button btnMenu;
+    @FXML
+    private TableView<ClienteDTO> tblClientes;
+    @FXML
+    private TableColumn colNombre;
+    @FXML
+    private TableColumn colPaterno;
+    @FXML
+    private TableColumn colMaterno;
+    @FXML
+    private TableColumn colTelefono;
+    @FXML
+    private TableColumn colDireccion;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.colNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
+        this.colPaterno.setCellValueFactory(new PropertyValueFactory("apellidoPaterno"));
+        this.colMaterno.setCellValueFactory(new PropertyValueFactory("apellidoMaterno"));
+        this.colTelefono.setCellValueFactory(new PropertyValueFactory("telefono"));
+        this.colDireccion.setCellValueFactory(new PropertyValueFactory("direccion"));
+        ClientesDAO c = new ClientesDAO();
+        tblClientes.setItems(c.getClientes());
     }    
     
     @FXML

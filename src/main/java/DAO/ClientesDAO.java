@@ -7,6 +7,10 @@ package DAO;
 import Model.ClienteDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -17,6 +21,7 @@ public class ClientesDAO {
     private Connection conexion;
     private PreparedStatement pstm;
     private String sql;
+    private ResultSet rs;
     
     public void insertarCliente(ClienteDTO cliente){
         try {
@@ -59,4 +64,62 @@ public class ClientesDAO {
             
         }
     }
+    
+     public ObservableList<ClienteDTO> getClientes() {
+           ObservableList<ClienteDTO> lista = FXCollections.observableArrayList();
+           ClienteDTO c; 
+           
+        try {
+            
+            //establezco la conexion de la base de datos con el metodo static de la clase Conexion
+            //Conexion implementa patron singleton,es decir, una sola conexion 
+            //y se cierra automaticamente cuando se cierra la aplicacion java
+            //conexion=Conexion.getConexion();
+            conexion = Conexion.getConnection();
+    
+            //declaro la consulta sql que se enviara por medio del PreparedStatement
+            sql = "SELECT nombre,apellido_paterno,apellido_materno,telefono,direccion";
+            sql += " FROM clientes; ";
+            
+            //preparo la consulta por medio de PreparedStatement 
+            pstm=conexion.prepareStatement(sql);
+           
+            //devuelve las tuplas de la consulta sql en uno bjeto ResultSet 
+            rs=pstm.executeQuery();
+            
+            while(rs.next()){
+                
+                c = new ClienteDTO();
+                
+                c.setNombre(rs.getString("nombre"));
+                c.setApellidoPaterno(rs.getString("apellido_paterno"));
+                c.setApellidoMaterno(rs.getString("apellido_materno"));
+                c.setTelefono(rs.getString("telefono"));
+                c.setDireccion(rs.getString("direccion"));
+                
+               
+                lista.add(c);
+                
+            }
+            
+            return lista;
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
+        }finally{
+            try {
+                
+                if(rs!=null) rs.close();
+                if(pstm!=null) pstm.close();
+                
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                throw new RuntimeException(ex);
+            }
+             
+            
+        }
+        
+    } 
 }

@@ -84,14 +84,13 @@
       </HBox>
       <HBox layoutY="113.0" prefHeight="367.0" prefWidth="851.0" style="-fx-background-color: #f1faee;">
          <children>
-            <TableView prefHeight="367.0" prefWidth="852.0">
+            <TableView fx:id="tblClientes" prefHeight="367.0" prefWidth="852.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="ID" />
-                <TableColumn prefWidth="75.0" text="Nombre" />
-                  <TableColumn prefWidth="122.4000244140625" text="Apellido Paterno" />
-                  <TableColumn prefWidth="113.60000610351562" text="Apellido Materno" />
-                  <TableColumn prefWidth="75.0" text="Telefono" />
-                  <TableColumn prefWidth="173.60003662109375" text="Direccion" />
+                <TableColumn fx:id="colNombre" prefWidth="105.0" text="Nombre" />
+                  <TableColumn fx:id="colPaterno" prefWidth="154.0" text="Apellido Paterno" />
+                  <TableColumn fx:id="colMaterno" prefWidth="172.0" text="Apellido Materno" />
+                  <TableColumn fx:id="colTelefono" prefWidth="118.0" text="Telefono" />
+                  <TableColumn fx:id="colDireccion" prefWidth="300.0" text="Direccion" />
               </columns>
             </TableView>
          </children>
