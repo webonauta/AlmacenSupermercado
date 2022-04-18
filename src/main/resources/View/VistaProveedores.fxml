@@ -84,17 +84,15 @@
       </HBox>
       <HBox layoutY="113.0" prefHeight="367.0" prefWidth="851.0" style="-fx-background-color: #f1faee;">
          <children>
-            <TableView prefHeight="367.0" prefWidth="853.0">
+            <TableView fx:id="tblProveedores" prefHeight="367.0" prefWidth="853.0">
               <columns>
-                <TableColumn prefWidth="30.39996337890625" text="ID" />
-                <TableColumn prefWidth="56.0" text="Nombre" />
-                  <TableColumn prefWidth="103.20001220703125" text="Apellido Paterno" />
-                  <TableColumn prefWidth="112.80001831054688" text="Apellido Materno" />
-                  <TableColumn prefWidth="77.5999755859375" text="Telefono" />
-                  <TableColumn minWidth="0.0" prefWidth="163.20001220703125" text="Direccion" />
-                  <TableColumn prefWidth="95.0" text="Empresa" />
-                  <TableColumn prefWidth="75.0" text="Razon social" />
-                  <TableColumn prefWidth="75.0" text="RFC" />
+                <TableColumn fx:id="colNombre" prefWidth="89.0" text="Nombre" />
+                  <TableColumn fx:id="colPaterno" prefWidth="149.0" text="Apellido Paterno" />
+                  <TableColumn fx:id="colMaterno" prefWidth="132.0" text="Apellido Materno" />
+                  <TableColumn fx:id="colTelefono" minWidth="0.0" prefWidth="70.0" text="Telefono" />
+                  <TableColumn fx:id="colDireccion" minWidth="0.0" prefWidth="154.0" text="Direccion" />
+                  <TableColumn fx:id="colEmpresa" minWidth="0.0" prefWidth="108.0" text="Empresa" />
+                  <TableColumn fx:id="colRFC" prefWidth="148.0" text="RFC" />
               </columns>
             </TableView>
          </children>

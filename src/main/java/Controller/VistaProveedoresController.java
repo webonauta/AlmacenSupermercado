@@ -4,6 +4,8 @@
  */
 package controller;
 
+import DAO.ProveedoresDAO;
+import Model.ProveedorDTO;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,7 +15,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -38,13 +43,38 @@ public class VistaProveedoresController implements Initializable {
     private Button btnMenu;
     @FXML
     private Button btnAgregarProveedor;
+    @FXML
+    private TableView<ProveedorDTO> tblProveedores;
+    @FXML
+    private TableColumn colNombre;
+    @FXML
+    private TableColumn colPaterno;
+    @FXML
+    private TableColumn colMaterno;
+    @FXML
+    private TableColumn colTelefono;
+    @FXML
+    private TableColumn colDireccion;
+    @FXML
+    private TableColumn colEmpresa;
+    @FXML
+    private TableColumn colRFC;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.colNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
+        this.colPaterno.setCellValueFactory(new PropertyValueFactory("paterno"));
+        this.colMaterno.setCellValueFactory(new PropertyValueFactory("materno"));
+        this.colTelefono.setCellValueFactory(new PropertyValueFactory("telefono"));
+        this.colDireccion.setCellValueFactory(new PropertyValueFactory("direccion"));
+        this.colEmpresa.setCellValueFactory(new PropertyValueFactory("empresa"));
+        this.colRFC.setCellValueFactory(new PropertyValueFactory("rfc"));
+        
+        ProveedoresDAO p = new ProveedoresDAO();
+        tblProveedores.setItems(p.getProveedores());
     }    
     
     @FXML

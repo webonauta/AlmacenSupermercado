@@ -4,7 +4,7 @@
  */
 package Controller;
 
-import DAO.ProveedorDAO;
+import DAO.ProveedoresDAO;
 import Model.ProveedorDTO;
 import controller.Main;
 import java.io.IOException;
@@ -63,7 +63,7 @@ public class VistaAgregarProveedoresController implements Initializable {
     @FXML
     private void registrarProveedor(ActionEvent event) {
         ProveedorDTO proveedor = new ProveedorDTO(txtNombre.getText(), txtPaterno.getText(), txtMaterno.getText(), txtTelefono.getText(), txtDireccion.getText(),txtEmpresa.getText(), txtRFC.getText());
-        ProveedorDAO p = new ProveedorDAO();
+        ProveedoresDAO p = new ProveedoresDAO();
         System.out.println(proveedor);
         p.insertarProveedor(proveedor);
           

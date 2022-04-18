@@ -6,12 +6,15 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author Navarro Villa Emmanuel de Jesús
  */
-public class ProveedorDAO {
+public class ProveedoresDAO {
     private Connection conexion;
     private PreparedStatement pstm;
     private String sql;
@@ -76,4 +79,64 @@ public class ProveedorDAO {
         }
     
     }
+    
+     public ObservableList<ProveedorDTO> getProveedores() {
+           ObservableList<ProveedorDTO> lista = FXCollections.observableArrayList();
+           ProveedorDTO p; 
+           
+        try {
+            
+            //establezco la conexion de la base de datos con el metodo static de la clase Conexion
+            //Conexion implementa patron singleton,es decir, una sola conexion 
+            //y se cierra automaticamente cuando se cierra la aplicacion java
+            //conexion=Conexion.getConexion();
+            conexion = Conexion.getConnection();
+    
+            //declaro la consulta sql que se enviara por medio del PreparedStatement
+            sql = "SELECT nombre,paterno,materno,telefono,direccion,empresa,rfc";
+            sql += " FROM proveedores; ";
+            
+            //preparo la consulta por medio de PreparedStatement 
+            pstm=conexion.prepareStatement(sql);
+           
+            //devuelve las tuplas de la consulta sql en uno bjeto ResultSet 
+            rs=pstm.executeQuery();
+            
+            while(rs.next()){
+                
+                p = new ProveedorDTO();
+                
+                p.setNombre(rs.getString("nombre"));
+                p.setPaterno(rs.getString("paterno"));
+                p.setMaterno(rs.getString("materno"));
+                p.setTelefono(rs.getString("telefono"));
+                p.setDireccion(rs.getString("direccion"));
+                p.setEmpresa(rs.getString("empresa"));
+                p.setRfc(rs.getString("rfc"));
+          
+               
+                lista.add(p);
+                
+            }
+            
+            return lista;
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
+        }finally{
+            try {
+                
+                if(rs!=null) rs.close();
+                if(pstm!=null) pstm.close();
+                
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                throw new RuntimeException(ex);
+            }
+             
+            
+        }
+        
+    } 
 }
