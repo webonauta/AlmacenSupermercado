@@ -7,17 +7,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="152.0" prefWidth="280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="Controller.VistaEliminarController">
+<AnchorPane id="AnchorPane" prefHeight="152.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VistaEliminarController">
    <children>
       <HBox prefHeight="98.0" prefWidth="294.0">
          <children>
-            <Label prefHeight="26.0" prefWidth="195.0" text="¿Deseas eliminar los datos?">
+            <Label prefHeight="26.0" prefWidth="200.0" text="¿Deseas eliminar el registro?">
                <font>
                   <Font size="15.0" />
                </font>
                <HBox.margin>
-                  <Insets bottom="20.0" left="60.0" right="50.0" top="50.0" />
+                  <Insets bottom="20.0" left="50.0" right="50.0" top="50.0" />
                </HBox.margin>
             </Label>
          </children>

@@ -14,11 +14,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -61,6 +64,7 @@ public class VistaProductosController implements Initializable {
     private Button btnNuevoProducto;
     @FXML
     private Button btnMenu;
+    private ProductoDTO productoSeleccionado = null;
    
 
     /**
@@ -90,8 +94,26 @@ public class VistaProductosController implements Initializable {
     private void actualizarProducto(ActionEvent event) {
     }
 
-    @FXML
-    private void eliminarProdcuto(ActionEvent event) {
+     @FXML
+    private void eliminarProducto(ActionEvent event) {
+        if(productoSeleccionado!= null){
+            
+              Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "¿Eliminar producto seleccionado?", ButtonType.YES, ButtonType.NO);
+
+              // clicking X also means no
+              ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+
+              if (!ButtonType.NO.equals(result)) {
+                  System.out.println("Producto Eliminado");
+                }
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Debes seleccionar producto");
+            alert.show();
+        }
     }
 
     @FXML
@@ -102,6 +124,14 @@ public class VistaProductosController implements Initializable {
     @FXML
     private void regresarMenu(ActionEvent event) throws IOException {
         lanzarSiguienteVentana("VistaMenu.fxml");
+    }
+    
+    @FXML
+    private void seleccionarProducto(MouseEvent event) {
+        productoSeleccionado = this.tblProductos.getSelectionModel().getSelectedItem();
+        
+        
+        System.out.println(productoSeleccionado);
     }
     
     private void lanzarSiguienteVentana(String vista) throws IOException{
@@ -119,5 +149,11 @@ public class VistaProductosController implements Initializable {
             
             ((Stage) (btnNuevoProducto.getScene().getWindow())).close();
     }
+
+   
+
+    
+
+  
 
 }
