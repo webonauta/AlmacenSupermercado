@@ -29,7 +29,7 @@
                   <Insets left="10.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldNombreProveedor" prefHeight="26.0" prefWidth="98.0">
+            <TextField fx:id="txtNombre" prefHeight="26.0" prefWidth="98.0">
                <HBox.margin>
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
@@ -39,7 +39,7 @@
                   <Insets left="5.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldApellidoPaternoProveedor">
+            <TextField fx:id="txtPaterno">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -52,7 +52,7 @@
                   <Insets left="5.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldApellidoMaternoProveedor">
+            <TextField fx:id="txtMaterno">
                <HBox.margin>
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
@@ -66,7 +66,7 @@
                   <Insets left="10.0" top="17.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldTelefonoProveedor" prefHeight="26.0" prefWidth="108.0">
+            <TextField fx:id="txtTelefono" prefHeight="26.0" prefWidth="108.0">
                <HBox.margin>
                   <Insets left="5.0" top="12.0" />
                </HBox.margin>
@@ -76,7 +76,7 @@
                   <Insets left="5.0" top="17.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldDireccionProveedor" prefHeight="26.0" prefWidth="221.0">
+            <TextField fx:id="txtDireccion" prefHeight="26.0" prefWidth="221.0">
                <HBox.margin>
                   <Insets left="5.0" top="12.0" />
                </HBox.margin>
@@ -86,7 +86,7 @@
                   <Insets left="5.0" top="17.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldEmpresaProveedor">
+            <TextField fx:id="txtEmpresa">
                <HBox.margin>
                   <Insets left="5.0" top="12.0" />
                </HBox.margin>
@@ -95,29 +95,19 @@
       </HBox>
       <HBox layoutY="250.0" prefHeight="83.0" prefWidth="662.0">
          <children>
-            <Label text="Razon social">
-               <HBox.margin>
-                  <Insets left="10.0" top="15.0" />
-               </HBox.margin>
-            </Label>
-            <TextField fx:id="txtFieldRazonSocialProveedor">
-               <HBox.margin>
-                  <Insets left="5.0" top="10.0" />
-               </HBox.margin>
-            </TextField>
             <Label text="RFC">
                <HBox.margin>
                   <Insets left="5.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtFieldRFCProveedor">
+            <TextField fx:id="txtRFC">
                <HBox.margin>
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
             </TextField>
          </children>
       </HBox>
-      <Button fx:id="btnAgregarProveedor" layoutX="339.0" layoutY="333.0" mnemonicParsing="false" text="Aceptar" />
+      <Button fx:id="btnAgregarProveedor" layoutX="339.0" layoutY="333.0" mnemonicParsing="false" onAction="#registrarProveedor" text="Aceptar" />
       <Button fx:id="btnRegresar" layoutX="232.0" layoutY="333.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
    </children>
 </AnchorPane>

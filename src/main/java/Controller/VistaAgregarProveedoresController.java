@@ -4,6 +4,8 @@
  */
 package Controller;
 
+import DAO.ProveedorDAO;
+import Model.ProveedorDTO;
 import controller.Main;
 import java.io.IOException;
 import java.net.URL;
@@ -25,27 +27,24 @@ import javafx.stage.Stage;
  * @author Alberto
  */
 public class VistaAgregarProveedoresController implements Initializable {
-
-    @FXML
-    private TextField txtFieldNombreProveedor;
-    @FXML
-    private TextField txtFieldApellidoPaternoProveedor;
-    @FXML
-    private TextField txtFieldApellidoMaternoProveedor;
-    @FXML
-    private TextField txtFieldTelefonoProveedor;
-    @FXML
-    private TextField txtFieldDireccionProveedor;
-    @FXML
-    private TextField txtFieldEmpresaProveedor;
-    @FXML
-    private TextField txtFieldRazonSocialProveedor;
-    @FXML
-    private TextField txtFieldRFCProveedor;
     @FXML
     private Button btnAgregarProveedor;
     @FXML
     private Button btnRegresar;
+    @FXML
+    private TextField txtNombre;
+    @FXML
+    private TextField txtPaterno;
+    @FXML
+    private TextField txtMaterno;
+    @FXML
+    private TextField txtTelefono;
+    @FXML
+    private TextField txtDireccion;
+    @FXML
+    private TextField txtEmpresa;
+    @FXML
+    private TextField txtRFC;
 
     /**
      * Initializes the controller class.
@@ -61,6 +60,14 @@ public class VistaAgregarProveedoresController implements Initializable {
 
     }
     
+    @FXML
+    private void registrarProveedor(ActionEvent event) {
+        ProveedorDTO proveedor = new ProveedorDTO(txtNombre.getText(), txtPaterno.getText(), txtMaterno.getText(), txtTelefono.getText(), txtDireccion.getText(),txtEmpresa.getText(), txtRFC.getText());
+        ProveedorDAO p = new ProveedorDAO();
+        System.out.println(proveedor);
+        p.insertarProveedor(proveedor);
+          
+    }
     
      private void lanzarSiguienteVentana(String vista) throws IOException{
             FXMLLoader loader = new FXMLLoader();//cardo la vista
@@ -77,4 +84,6 @@ public class VistaAgregarProveedoresController implements Initializable {
             
             ((Stage) (btnAgregarProveedor.getScene().getWindow())).close();
     }
+
+    
 }
