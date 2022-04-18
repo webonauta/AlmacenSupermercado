@@ -5,21 +5,24 @@
 package controller;
 
 import DAO.ClientesDAO;
-import DAO.ProveedoresDAO;
 import Model.ClienteDTO;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -55,6 +58,10 @@ public class VistaClientesController implements Initializable {
     private TableColumn colTelefono;
     @FXML
     private TableColumn colDireccion;
+    
+    private ClienteDTO clienteSeleccionado = null;
+    private ClientesDAO c;
+    private ObservableList<ClienteDTO> listaClientes;
 
     /**
      * Initializes the controller class.
@@ -66,8 +73,10 @@ public class VistaClientesController implements Initializable {
         this.colMaterno.setCellValueFactory(new PropertyValueFactory("apellidoMaterno"));
         this.colTelefono.setCellValueFactory(new PropertyValueFactory("telefono"));
         this.colDireccion.setCellValueFactory(new PropertyValueFactory("direccion"));
-        ClientesDAO c = new ClientesDAO();
-        tblClientes.setItems(c.getClientes());
+        
+        c = new ClientesDAO();
+        listaClientes = c.getClientes();
+        tblClientes.setItems(listaClientes);
     }    
     
     @FXML
@@ -80,6 +89,27 @@ public class VistaClientesController implements Initializable {
 
     @FXML
     private void eliminarCliente(ActionEvent event) {
+        ClientesDAO p = new ClientesDAO();
+        if(clienteSeleccionado != null){
+            
+              Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "¿Eliminar cliente seleccionado?", ButtonType.YES, ButtonType.NO);
+
+              // clicking X also means no
+              ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+
+              if (!ButtonType.NO.equals(result)) {
+                  p.eliminarCliente(clienteSeleccionado);
+                  listaClientes.remove(clienteSeleccionado);
+                  tblClientes.refresh();
+                }
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Debes seleccionar cliente");
+            alert.show();
+        }
     }
 
     @FXML
@@ -106,6 +136,12 @@ public class VistaClientesController implements Initializable {
             primaryStage.show();
             
             ((Stage) (btnAgregarCliente.getScene().getWindow())).close();
+    }
+
+    @FXML
+    private void seleccionarCliente(MouseEvent event) {
+        clienteSeleccionado = this.tblClientes.getSelectionModel().getSelectedItem();
+        System.out.println(clienteSeleccionado);
     }
     
 }
