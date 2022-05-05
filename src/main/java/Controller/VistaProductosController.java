@@ -4,6 +4,7 @@
  */
 package controller;
 
+import Controller.VistaAgregarProductosController;
 import DAO.ProductosDAO;
 import Model.ProductoDTO;
 import java.io.IOException;
@@ -94,7 +95,47 @@ public class VistaProductosController implements Initializable {
     }
 
     @FXML
-    private void actualizarProducto(ActionEvent event) {
+    private void actualizarProducto(ActionEvent event) throws IOException {
+        Stage ventanaAgregarProducto = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        AnchorPane root = (AnchorPane)loader.load(getClass().getResource("/View/VistaAgregarProductos.fxml").openStream());
+        //creo instancia del controlador de la ventana VistaAgregarProducto
+        VistaAgregarProductosController controladorProducto = (VistaAgregarProductosController)loader.getController();
+        
+        
+        
+        
+        if(productoSeleccionado!= null){
+            
+              Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "¿Actualizar producto seleccionado?", ButtonType.YES, ButtonType.NO);
+
+              // clicking X also means no
+              ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+
+              if (!ButtonType.NO.equals(result)) {
+                  //invoco metodos publicos del controlador instanciado
+                  controladorProducto.Actualizar();
+                  controladorProducto.setEtiquetaProducto();
+                  controladorProducto.setProducto(productoSeleccionado);
+                  
+                  Scene scene = new Scene(root);
+                  ventanaAgregarProducto.setScene(scene);
+                  ventanaAgregarProducto.alwaysOnTopProperty();
+                  ventanaAgregarProducto.initModality(Modality.APPLICATION_MODAL);
+                  ventanaAgregarProducto.show();
+                  
+                   ((Stage) (btnActualizarProducto.getScene().getWindow())).close();
+                 
+                }
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Advertencia");
+            alert.setContentText("Debes seleccionar producto");
+            alert.show();
+        }
+        
     }
 
      @FXML

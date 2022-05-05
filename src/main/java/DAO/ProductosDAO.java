@@ -83,6 +83,69 @@ public class ProductosDAO {
     
     }
     
+    public void actualizarProducto(ProductoDTO producto,int id){
+        
+        try {
+            
+            //establezco la conexion de la base de datos con el metodo static de la clase Conexion
+            //Conexion implementa patron singleton,es decir, una sola conexion 
+            //y se cierra automaticamente cuando se cierra la aplicacion java
+            //conexion=Conexion.getConexion();
+            conexion = Conexion.getConnection();
+            //desactivo autoCommit
+            conexion.setAutoCommit(false);
+            
+            //declaro la consulta sql que se enviara por medio del PreparedStatement
+            sql="UPDATE productos ";
+            sql+=" SET clave = ?, nombre = ?, descripcion = ?, categoria = ?, fecha_alta = ?, cantidad = ?, precio_unitario = ?, precio_venta = ? ";
+            sql+=" WHERE  id_producto = ? ;";
+            
+            //preparo la consulta por medio de PreparedStatement 
+            pstm=conexion.prepareStatement(sql);
+            
+            //seteamos(actualizamos) los valores de la sentencia  sql parametrizada(?,?,?...etc)
+            //pasandole en orden los parametros de un EstudianteDTO de acuerdo a la tabla que vamos insertar
+            pstm.setString(1, producto.getClave());
+            pstm.setString(2, producto.getNombre());
+            pstm.setString(3, producto.getDescripcion());
+            pstm.setString(4, producto.getCategoria());
+            pstm.setString(5,producto.getFechaAlta());
+            pstm.setInt(6, producto.getCantidad());
+            pstm.setFloat(7, producto.getPrecioUnitario());
+            pstm.setFloat(8, producto.getPrecioVenta());
+            pstm.setInt(9,id);
+           
+            
+            
+            //executeUpdate() devuelve el número de filas afectadas
+            int resultado=pstm.executeUpdate();
+            if (resultado>0) {
+                //// todo OK entonces commiteo la operacion
+                conexion.commit();
+                System.out.println("Producto actualizado correctamente");
+            } else {
+                throw new RuntimeException("Producto no actualizado correctamente");
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }finally{
+            try {
+                //rollback por las dudas
+                if(conexion!=null) conexion.rollback();
+                if(pstm!=null) pstm.close();
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+             
+            
+        }
+    
+    }
+    
      public void eliminarProducto(ProductoDTO producto){
         
         try {
@@ -215,6 +278,8 @@ public class ProductosDAO {
             //preparo la consulta por medio de PreparedStatement 
             pstm=conexion.prepareStatement(sql);
             
+            
+            
             //devuelve las tuplas de la consulta sql en uno objeto ResultSet 
             rs=pstm.executeQuery();
             
@@ -244,4 +309,55 @@ public class ProductosDAO {
         }
     
     }
+     
+    public int getIdProducto(String clave){
+            int id_usuario = 0;
+        try {
+            
+            //establezco la conexion de la base de datos con el metodo static de la clase Conexion
+            //Conexion implementa patron singleton,es decir, una sola conexion 
+            //y se cierra automaticamente cuando se cierra la aplicacion java
+            //conexion=Conexion.getConexion();
+            conexion = Conexion.getConnection();
+            
+            
+            //declaro la consulta sql que se enviara por medio del PreparedStatement
+            sql = "SELECT id_producto";
+            sql += " FROM productos ";
+            sql += " WHERE clave = ?; ";
+            
+            
+            //preparo la consulta por medio de PreparedStatement 
+            pstm=conexion.prepareStatement(sql);
+            
+            pstm.setString(1, clave);
+            
+            //devuelve las tuplas de la consulta sql en uno objeto ResultSet 
+            rs=pstm.executeQuery();
+            
+            while(rs.next()){
+              
+                id_usuario = Integer.parseInt(rs.getString(1));
+                
+            }
+            
+            return id_usuario;
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }finally{
+            try {
+                
+                if(rs!=null) rs.close();
+                if(pstm!=null) pstm.close();
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+             
+            
+        }
+    } 
 }

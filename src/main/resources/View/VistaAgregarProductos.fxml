@@ -14,7 +14,7 @@
    <children>
       <HBox prefHeight="107.0" prefWidth="608.0" style="-fx-background-color: #1d3557;">
          <children>
-            <Label text="Agregar productos" textFill="WHITE">
+            <Label fx:id="lblProductos" text="Agregar producto" textFill="WHITE">
                <font>
                   <Font size="35.0" />
                </font>

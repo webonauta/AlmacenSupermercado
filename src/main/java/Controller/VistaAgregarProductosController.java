@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -56,7 +57,12 @@ public class VistaAgregarProductosController implements Initializable {
     private ComboBox<String> cmbCategoria;
     @FXML
     private TextField txtCategoriaNueva;
-
+    
+    private boolean actualizar = false;
+    //private ProductoDTO producto;
+    @FXML
+    private Label lblProductos;
+    private ProductoDTO producto;
     /**
      * Initializes the controller class.
      */
@@ -75,6 +81,7 @@ public class VistaAgregarProductosController implements Initializable {
     private void agregarProducto(ActionEvent event) {
        ProductosDAO p =  new ProductosDAO();
        ProductoDTO producto = new ProductoDTO();
+       int id = p.getIdProducto(this.producto.getClave());
        
        String clave = txtClave.getText();
        String nombre = txtNombre.getText();
@@ -102,7 +109,16 @@ public class VistaAgregarProductosController implements Initializable {
        producto.setPrecioUnitario(precioUnitario);
        producto.setPrecioVenta(precioVenta);
      
-       p.insertarProducto(producto);
+       if(actualizar == false){
+           p.insertarProducto(producto);
+           //System.out.println("Insertando");
+       }else{
+           
+           System.out.println("Id = "+id);
+           p.actualizarProducto(producto,id);
+           
+       }
+       
     }
 
     @FXML
@@ -134,5 +150,25 @@ public class VistaAgregarProductosController implements Initializable {
             primaryStage.show();
             
             ((Stage) (btnAgregarProductos.getScene().getWindow())).close();
+    }
+     
+    public void Actualizar(){
+        
+        this.actualizar = true;
+    } 
+    
+    public void setProducto(ProductoDTO producto){
+        this.producto = producto;
+        txtClave.setText(producto.getClave());
+        txtNombre.setText(producto.getNombre());
+        txtDescripcion.setText(producto.getDescripcion());
+        txtCantidad.setText(producto.getCantidad()+"");
+        txtPrecioUnitario.setText(producto.getPrecioUnitario()+"");
+        txtPrecioVenta.setText(producto.getPrecioVenta()+"");
+        
+    }
+    
+    public void setEtiquetaProducto(){
+        lblProductos.setText("Actualizar producto");
     }
 }
