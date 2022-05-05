@@ -6,6 +6,7 @@ package controller;
 
 import Controller.VistaAgregarProductosController;
 import DAO.ProductosDAO;
+import Fachada.FachadaProductoDAO;
 import Model.ProductoDTO;
 import java.io.IOException;
 import java.net.URL;
@@ -67,7 +68,8 @@ public class VistaProductosController implements Initializable {
     @FXML
     private Button btnMenu;
     private ProductoDTO productoSeleccionado = null;
-    private ProductosDAO p;
+    //private ProductosDAO p;
+    private FachadaProductoDAO f;
     private ObservableList<ProductoDTO> listaProductos;
 
     /**
@@ -84,8 +86,10 @@ public class VistaProductosController implements Initializable {
         this.colPrecioUnitario.setCellValueFactory(new PropertyValueFactory("precioUnitario"));
         this.colPrecioVenta.setCellValueFactory(new PropertyValueFactory("precioVenta"));
         
-        p = new ProductosDAO();
-        listaProductos = p.getProductos();
+        //p = new ProductosDAO();
+        f = new FachadaProductoDAO();
+        //listaProductos = p.getProductos();
+        listaProductos = f.obtenerProductos();
         tblProductos.setItems(listaProductos);
         
     }    
