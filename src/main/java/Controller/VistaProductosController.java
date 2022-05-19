@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -71,6 +73,7 @@ public class VistaProductosController implements Initializable {
     //private ProductosDAO p;
     private FachadaProductoDAO f;
     private ObservableList<ProductoDTO> listaProductos;
+    FilteredList<ProductoDTO> produtosFiltrados;
 
     /**
      * Initializes the controller class.
@@ -92,11 +95,45 @@ public class VistaProductosController implements Initializable {
         listaProductos = f.obtenerProductos();
         tblProductos.setItems(listaProductos);
         
+        
+        FilteredList<ProductoDTO> filteredData = new FilteredList<>(listaProductos, b -> true);
+		
+		// 2. Set the filter Predicate whenever the filter changes.
+		 txtBuscarProducto.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(productoSeleccionado -> {
+				// If filter text is empty, display all persons.
+								
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+				
+				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+				
+				if (productoSeleccionado.getClave().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				} else if (productoSeleccionado.getNombre().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}
+				else if (String.valueOf(productoSeleccionado.getCategoria()).indexOf(lowerCaseFilter)!=-1)
+				     return true;
+				     else  
+				    	 return false; // Does not match.
+			});
+		});
+		
+		// 3. Wrap the FilteredList in a SortedList. 
+		SortedList<ProductoDTO> sortedData = new SortedList<>(filteredData);
+		
+		// 4. Bind the SortedList comparator to the TableView comparator.
+		// 	  Otherwise, sorting the TableView would have no effect.
+		sortedData.comparatorProperty().bind(tblProductos.comparatorProperty());
+		
+		// 5. Add sorted (and filtered) data to the table.
+		tblProductos.setItems(sortedData);
     }    
     
-    @FXML
-    private void buscarProdcuto(ActionEvent event) {
-    }
+    
 
     @FXML
     private void actualizarProducto(ActionEvent event) throws IOException {

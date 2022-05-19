@@ -5,11 +5,14 @@
 package controller;
 
 import DAO.ProveedoresDAO;
+import Model.ProductoDTO;
 import Model.ProveedorDTO;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -85,11 +88,45 @@ public class VistaProveedoresController implements Initializable {
         p = new ProveedoresDAO();
         listaProveedores = p.getProveedores();
         tblProveedores.setItems(listaProveedores);
+        
+        FilteredList<ProveedorDTO> filteredData = new FilteredList<>(listaProveedores, b -> true);
+		
+		// 2. Set the filter Predicate whenever the filter changes.
+		 txtBuscar.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(productoSeleccionado -> {
+				// If filter text is empty, display all persons.
+								
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+				
+				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+				
+				if (productoSeleccionado.getNombre().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				} else if (productoSeleccionado.getRfc().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}
+				else if (String.valueOf(productoSeleccionado.getTelefono()).indexOf(lowerCaseFilter)!=-1)
+				     return true;
+				     else  
+				    	 return false; // Does not match.
+			});
+		});
+		
+		// 3. Wrap the FilteredList in a SortedList. 
+		SortedList<ProveedorDTO> sortedData = new SortedList<>(filteredData);
+		
+		// 4. Bind the SortedList comparator to the TableView comparator.
+		// 	  Otherwise, sorting the TableView would have no effect.
+		sortedData.comparatorProperty().bind(tblProveedores.comparatorProperty());
+		
+		// 5. Add sorted (and filtered) data to the table.
+		tblProveedores.setItems(sortedData);
     }    
     
-    @FXML
-    private void buscarProveedor(ActionEvent event) {
-    }
+    
 
     @FXML
     private void actualizarProveedor(ActionEvent event) {

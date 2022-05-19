@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -77,11 +79,45 @@ public class VistaClientesController implements Initializable {
         c = new ClientesDAO();
         listaClientes = c.getClientes();
         tblClientes.setItems(listaClientes);
+        
+        FilteredList<ClienteDTO> filteredData = new FilteredList<>(listaClientes, b -> true);
+		
+		// 2. Set the filter Predicate whenever the filter changes.
+		 txtdBuscarCliente.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(productoSeleccionado -> {
+				// If filter text is empty, display all persons.
+								
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+				
+				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+				
+				if (productoSeleccionado.getNombre().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				} else if (productoSeleccionado.getApellidoPaterno().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}
+				else if (String.valueOf(productoSeleccionado.getApellidoMaterno()).indexOf(lowerCaseFilter)!=-1)
+				     return true;
+				     else  
+				    	 return false; // Does not match.
+			});
+		});
+		
+		// 3. Wrap the FilteredList in a SortedList. 
+		SortedList<ClienteDTO> sortedData = new SortedList<>(filteredData);
+		
+		// 4. Bind the SortedList comparator to the TableView comparator.
+		// 	  Otherwise, sorting the TableView would have no effect.
+		sortedData.comparatorProperty().bind(tblClientes.comparatorProperty());
+		
+		// 5. Add sorted (and filtered) data to the table.
+		tblClientes.setItems(sortedData);
+        
     }    
     
-    @FXML
-    private void buscarCliente(ActionEvent event) {
-    }
 
     @FXML
     private void actualizarCliente(ActionEvent event) {

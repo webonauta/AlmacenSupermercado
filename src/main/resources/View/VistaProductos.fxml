@@ -32,15 +32,7 @@
                   </TextField>
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Button fx:id="btnBuscarProducto" mnemonicParsing="false" onAction="#buscarProdcuto" text="BUSCAR">
-                     <VBox.margin>
-                        <Insets top="70.0" />
-                     </VBox.margin>
-                  </Button>
-               </children>
-            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" />
             <VBox prefHeight="114.0" prefWidth="100.0">
                <children>
                   <Button fx:id="btnActualizarProducto" mnemonicParsing="false" onAction="#actualizarProducto" prefHeight="26.0" prefWidth="94.0" text="ACTUALIZAR">
