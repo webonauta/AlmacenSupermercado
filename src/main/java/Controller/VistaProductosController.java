@@ -89,7 +89,7 @@ public class VistaProductosController extends ProductosDAOImpl implements Initia
         //p = new ProductosDAO();
         f = new FachadaProductoDAO();
         //listaProductos = p.getProductos();
-        listaProductos = f.obtenerProductos();
+        listaProductos = getProductos();
         tblProductos.setItems(listaProductos);
         
         
