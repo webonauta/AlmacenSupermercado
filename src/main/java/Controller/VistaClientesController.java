@@ -99,7 +99,7 @@ public class VistaClientesController implements Initializable {
 				} else if (productoSeleccionado.getApellidoPaterno().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches last name.
 				}
-				else if (String.valueOf(productoSeleccionado.getApellidoMaterno()).indexOf(lowerCaseFilter)!=-1)
+				else if (productoSeleccionado.getApellidoMaterno().toLowerCase().indexOf(lowerCaseFilter)!=-1)
 				     return true;
 				     else  
 				    	 return false; // Does not match.

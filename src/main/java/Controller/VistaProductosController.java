@@ -115,7 +115,7 @@ public class VistaProductosController implements Initializable {
 				} else if (productoSeleccionado.getNombre().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches last name.
 				}
-				else if (String.valueOf(productoSeleccionado.getCategoria()).indexOf(lowerCaseFilter)!=-1)
+				else if (productoSeleccionado.getCategoria().toLowerCase().indexOf(lowerCaseFilter)!=-1)
 				     return true;
 				     else  
 				    	 return false; // Does not match.

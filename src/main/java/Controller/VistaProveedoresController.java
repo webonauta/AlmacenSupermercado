@@ -108,7 +108,7 @@ public class VistaProveedoresController implements Initializable {
 				} else if (productoSeleccionado.getRfc().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches last name.
 				}
-				else if (String.valueOf(productoSeleccionado.getTelefono()).indexOf(lowerCaseFilter)!=-1)
+				else if (productoSeleccionado.getTelefono().toLowerCase().indexOf(lowerCaseFilter)!=-1)
 				     return true;
 				     else  
 				    	 return false; // Does not match.
