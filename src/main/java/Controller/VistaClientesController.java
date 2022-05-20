@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controller;
 
 import DAO.ClientesDAO;
+import DAO.impl.ClientesDAOImpl;
 import Model.ClienteDTO;
 import java.io.IOException;
 import java.net.URL;
@@ -33,21 +30,14 @@ import javafx.stage.Stage;
  * FXML Controller class
  *
  * @author Alberto
+ * @author Ingrid Casales
  */
-public class VistaClientesController implements Initializable {
+public class VistaClientesController extends ClientesDAOImpl implements Initializable {
 
     @FXML
     private TextField txtdBuscarCliente;
     @FXML
-    private Button btnBuscarCliente;
-    @FXML
-    private Button btnActualizarCliente;
-    @FXML
-    private Button btnEliminarCliente;
-    @FXML
     private Button btnAgregarCliente;
-    @FXML
-    private Button btnMenu;
     @FXML
     private TableView<ClienteDTO> tblClientes;
     @FXML
@@ -62,8 +52,9 @@ public class VistaClientesController implements Initializable {
     private TableColumn colDireccion;
     
     private ClienteDTO clienteSeleccionado = null;
-    private ClientesDAO c;
+
     private ObservableList<ClienteDTO> listaClientes;
+
 
     /**
      * Initializes the controller class.
@@ -76,8 +67,7 @@ public class VistaClientesController implements Initializable {
         this.colTelefono.setCellValueFactory(new PropertyValueFactory("telefono"));
         this.colDireccion.setCellValueFactory(new PropertyValueFactory("direccion"));
         
-        c = new ClientesDAO();
-        listaClientes = c.getClientes();
+        listaClientes = getClientes();
         tblClientes.setItems(listaClientes);
         
         FilteredList<ClienteDTO> filteredData = new FilteredList<>(listaClientes, b -> true);
@@ -125,7 +115,6 @@ public class VistaClientesController implements Initializable {
 
     @FXML
     private void eliminarCliente(ActionEvent event) {
-        ClientesDAO p = new ClientesDAO();
         if(clienteSeleccionado != null){
             
               Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "¿Eliminar cliente seleccionado?", ButtonType.YES, ButtonType.NO);
@@ -134,7 +123,7 @@ public class VistaClientesController implements Initializable {
               ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
 
               if (!ButtonType.NO.equals(result)) {
-                  p.eliminarCliente(clienteSeleccionado);
+                  eliminarCliente(clienteSeleccionado);
                   listaClientes.remove(clienteSeleccionado);
                   tblClientes.refresh();
                 }

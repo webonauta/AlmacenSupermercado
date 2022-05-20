@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controller;
 
-import DAO.ProveedoresDAO;
-import Model.ProductoDTO;
+import DAO.impl.ProveedoresDAOImpl;
 import Model.ProveedorDTO;
 import java.io.IOException;
 import java.net.URL;
@@ -34,20 +29,11 @@ import javafx.stage.Stage;
  * FXML Controller class
  *
  * @author Alberto
+ * @author Ingrid Casales
  */
-public class VistaProveedoresController implements Initializable {
+public class VistaProveedoresController extends ProveedoresDAOImpl implements Initializable {
 
-    @FXML
-    private TextField txtBuscar;
-    @FXML
-    private Button btnBuscarProveedor;
-    @FXML
-    private Button btnActualizarProveedor;
-    @FXML
-    private Button btnEliminarProveedor;
-   
-    @FXML
-    private Button btnMenu;
+  
     @FXML
     private Button btnAgregarProveedor;
     @FXML
@@ -66,10 +52,11 @@ public class VistaProveedoresController implements Initializable {
     private TableColumn colEmpresa;
     @FXML
     private TableColumn colRFC;
+    @FXML
+    private TextField txtBuscar;
     
     
     private ProveedorDTO proveedorSeleccionado = null;
-    private ProveedoresDAO p;
     private ObservableList<ProveedorDTO> listaProveedores;
 
     /**
@@ -85,8 +72,7 @@ public class VistaProveedoresController implements Initializable {
         this.colEmpresa.setCellValueFactory(new PropertyValueFactory("empresa"));
         this.colRFC.setCellValueFactory(new PropertyValueFactory("rfc"));
         
-        p = new ProveedoresDAO();
-        listaProveedores = p.getProveedores();
+        listaProveedores = getProveedores();
         tblProveedores.setItems(listaProveedores);
         
         FilteredList<ProveedorDTO> filteredData = new FilteredList<>(listaProveedores, b -> true);
@@ -135,7 +121,6 @@ public class VistaProveedoresController implements Initializable {
     @FXML
     private void eliminarProveedor(ActionEvent event) {
         
-        ProveedoresDAO p = new ProveedoresDAO();
         
         if(proveedorSeleccionado != null){
             
@@ -145,7 +130,7 @@ public class VistaProveedoresController implements Initializable {
               ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
 
               if (!ButtonType.NO.equals(result)) {
-                  p.eliminarProveedor(proveedorSeleccionado);
+                  eliminarProveedor(proveedorSeleccionado);
                   listaProveedores.remove(proveedorSeleccionado);
                   tblProveedores.refresh();
                 }

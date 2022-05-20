@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package Controller;
 
 import DAO.ClientesDAO;
+import DAO.impl.ClientesDAOImpl;
 import Model.ClienteDTO;
 import controller.Main;
 import java.io.IOException;
@@ -20,13 +17,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javax.inject.Inject;
 
 /**
  * FXML Controller class
  *
  * @author Alberto
  */
-public class VistaAgregarClientesController implements Initializable {
+public class VistaAgregarClientesController extends ClientesDAOImpl implements Initializable {
 
     @FXML
     private Button btnAgregarCliente;
@@ -42,7 +40,8 @@ public class VistaAgregarClientesController implements Initializable {
     private TextField txtTelefono;
     @FXML
     private TextField txtDireccion;
-
+    @Inject
+    private ClientesDAO c;
     /**
      * Initializes the controller class.
      */
@@ -59,9 +58,9 @@ public class VistaAgregarClientesController implements Initializable {
  
     @FXML
     private void agregarCliente(ActionEvent event) {
-        ClientesDAO c = new ClientesDAO();
+        
         ClienteDTO cliente = new ClienteDTO(txtNombre.getText(),txtPaterno.getText(), txtMaterno.getText(), txtTelefono.getText(), txtDireccion.getText());
-        c.insertarCliente(cliente);
+        insertarCliente(cliente);
     }
     
      private void lanzarSiguienteVentana(String vista) throws IOException{

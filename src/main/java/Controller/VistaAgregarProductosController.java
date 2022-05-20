@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package Controller;
 
-import DAO.ProductosDAO;
+import DAO.impl.ProductosDAOImpl;
 import Model.ProductoDTO;
 import controller.Main;
 import java.io.IOException;
@@ -27,13 +23,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javax.inject.Inject;
 
 /**
  * FXML Controller class
  *
  * @author Alberto
+ * @author Ingrid Casales
  */
-public class VistaAgregarProductosController implements Initializable {
+public class VistaAgregarProductosController extends ProductosDAOImpl implements Initializable {
     @FXML
     private Button btnAgregarProductos;
     @FXML
@@ -62,7 +60,9 @@ public class VistaAgregarProductosController implements Initializable {
     //private ProductoDTO producto;
     @FXML
     private Label lblProductos;
+    @Inject
     private ProductoDTO producto;
+ 
     /**
      * Initializes the controller class.
      */
@@ -79,9 +79,8 @@ public class VistaAgregarProductosController implements Initializable {
   
     @FXML
     private void agregarProducto(ActionEvent event) {
-       ProductosDAO p =  new ProductosDAO();
        ProductoDTO producto = new ProductoDTO();
-       int id = p.getIdProducto(this.producto.getClave());
+       int id = getIdProducto(this.producto.getClave());
        
        String clave = txtClave.getText();
        String nombre = txtNombre.getText();
@@ -110,12 +109,12 @@ public class VistaAgregarProductosController implements Initializable {
        producto.setPrecioVenta(precioVenta);
      
        if(actualizar == false){
-           p.insertarProducto(producto);
+           insertarProducto(producto);
            //System.out.println("Insertando");
        }else{
            
            System.out.println("Id = "+id);
-           p.actualizarProducto(producto,id);
+           actualizarProducto(producto,id);
            
        }
        
@@ -124,9 +123,8 @@ public class VistaAgregarProductosController implements Initializable {
     @FXML
     private void llenarComBoxCategoria(MouseEvent event) {
         txtCategoriaNueva.setText("");
-        ProductosDAO p = new ProductosDAO();
         ObservableList<String> lista;
-        lista = p.getCategorias();
+        lista = getCategorias();
         Collections.sort(lista);//ordeno la lista las categorias alfabeticamente
         cmbCategoria.setItems(lista);
     }

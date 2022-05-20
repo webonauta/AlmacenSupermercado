@@ -1,11 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controller;
 
 
-import DAO.UsuariosDAO;
+import DAO.impl.UsuariosDAOImpl;
 import Model.UsuarioDTO;
 import java.io.IOException;
 import java.net.URL;
@@ -28,7 +24,7 @@ import javafx.stage.Stage;
  *
  * @author Alberto
  */
-public class VistaLoginController implements Initializable {
+public class VistaLoginController extends UsuariosDAOImpl implements Initializable {
 
     @FXML
     private TextField txtUsuario;
@@ -38,7 +34,7 @@ public class VistaLoginController implements Initializable {
     private Button btnLogin;
     @FXML
     private PasswordField txtPassword;
-
+    
     /**
      * Initializes the controller class.
      */
@@ -50,9 +46,8 @@ public class VistaLoginController implements Initializable {
     @FXML
     private void validarUsuario(ActionEvent event) throws IOException {
         UsuarioDTO usuario = null;
-        UsuariosDAO u = new UsuariosDAO();
-        
-        usuario = u.validarUsuario(txtUsuario.getText(),txtPassword.getText());
+       
+        usuario = validarUsuario(txtUsuario.getText(),txtPassword.getText());
         
         if(usuario != null){
             lanzarSiguienteVentana("VistaMenu.fxml");

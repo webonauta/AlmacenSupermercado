@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package Controller;
 
-import DAO.ProveedoresDAO;
+import DAO.impl.ProveedoresDAOImpl;
 import Model.ProveedorDTO;
 import controller.Main;
 import java.io.IOException;
@@ -25,12 +21,11 @@ import javafx.stage.Stage;
  * FXML Controller class
  *
  * @author Alberto
+ * @author Ingrid Casales
  */
-public class VistaAgregarProveedoresController implements Initializable {
+public class VistaAgregarProveedoresController extends ProveedoresDAOImpl implements Initializable {
     @FXML
     private Button btnAgregarProveedor;
-    @FXML
-    private Button btnRegresar;
     @FXML
     private TextField txtNombre;
     @FXML
@@ -45,6 +40,7 @@ public class VistaAgregarProveedoresController implements Initializable {
     private TextField txtEmpresa;
     @FXML
     private TextField txtRFC;
+    
 
     /**
      * Initializes the controller class.
@@ -63,9 +59,8 @@ public class VistaAgregarProveedoresController implements Initializable {
     @FXML
     private void registrarProveedor(ActionEvent event) {
         ProveedorDTO proveedor = new ProveedorDTO(txtNombre.getText(), txtPaterno.getText(), txtMaterno.getText(), txtTelefono.getText(), txtDireccion.getText(),txtEmpresa.getText(), txtRFC.getText());
-        ProveedoresDAO p = new ProveedoresDAO();
         System.out.println(proveedor);
-        p.insertarProveedor(proveedor);
+        insertarProveedor(proveedor);
           
     }
     

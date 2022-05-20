@@ -1,11 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controller;
 
 import Controller.VistaAgregarProductosController;
-import DAO.ProductosDAO;
+import DAO.impl.ProductosDAOImpl;
 import Fachada.FachadaProductoDAO;
 import Model.ProductoDTO;
 import java.io.IOException;
@@ -35,8 +31,9 @@ import javafx.stage.Stage;
  * FXML Controller class
  *
  * @author Alberto
+ * @author Ingrid Casales
  */
-public class VistaProductosController implements Initializable {
+public class VistaProductosController extends ProductosDAOImpl implements Initializable  {
 
     
     @FXML
@@ -181,7 +178,6 @@ public class VistaProductosController implements Initializable {
 
      @FXML
     private void eliminarProducto(ActionEvent event) {
-        ProductosDAO p = new ProductosDAO();
         if(productoSeleccionado!= null){
             
               Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "¿Eliminar producto seleccionado?", ButtonType.YES, ButtonType.NO);
@@ -190,7 +186,7 @@ public class VistaProductosController implements Initializable {
               ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
 
               if (!ButtonType.NO.equals(result)) {
-                  p.eliminarProducto(productoSeleccionado);
+                  eliminarProducto(productoSeleccionado);
                   listaProductos.remove(productoSeleccionado);
                   tblProductos.refresh();
                 }
