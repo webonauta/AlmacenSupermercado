@@ -12,7 +12,7 @@
    <children>
       <HBox prefHeight="107.0" prefWidth="662.0" style="-fx-background-color: #1d3557;">
          <children>
-            <Label text="Agregar proveedor" textFill="WHITE">
+            <Label fx:id="lblProveedores" text="Agregar proveedor" textFill="WHITE">
                <font>
                   <Font size="35.0" />
                </font>

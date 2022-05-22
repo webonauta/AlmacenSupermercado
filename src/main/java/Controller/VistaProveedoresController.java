@@ -1,5 +1,7 @@
 package controller;
 
+import Controller.VistaAgregarProductosController;
+import Controller.VistaAgregarProveedoresController;
 import DAO.impl.ProveedoresDAOImpl;
 import Model.ProveedorDTO;
 import java.io.IOException;
@@ -113,9 +115,47 @@ public class VistaProveedoresController extends ProveedoresDAOImpl implements In
     }    
     
     
-
+    //realizando
     @FXML
-    private void actualizarProveedor(ActionEvent event) {
+    private void actualizarProveedor(ActionEvent event) throws IOException {
+        Stage ventanaAgregarProveedor = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        AnchorPane root = (AnchorPane)loader.load(getClass().getResource("/View/VistaAgregarProveedores.fxml").openStream());
+        //creo instancia del controlador de la ventana VistaAgregarProveedor
+        VistaAgregarProveedoresController controladorProveedor = (VistaAgregarProveedoresController)loader.getController();
+        
+        if(proveedorSeleccionado != null){
+            
+              Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "¿Actualizar proveedor seleccionado?", ButtonType.YES, ButtonType.NO);
+
+              // clicking X also means no
+              ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+
+              if (!ButtonType.NO.equals(result)) {
+                  //invoco metodos publicos del controlador instanciado
+                  controladorProveedor.Actualizar();
+                  controladorProveedor.setEtiquetaProveedor();
+                  controladorProveedor.setProveedor(proveedorSeleccionado);
+                  
+                  Scene scene = new Scene(root);
+                  ventanaAgregarProveedor.setScene(scene);
+                  ventanaAgregarProveedor.alwaysOnTopProperty();
+                  ventanaAgregarProveedor.initModality(Modality.APPLICATION_MODAL);
+                  ventanaAgregarProveedor.show();
+                  
+                   ((Stage) (btnAgregarProveedor.getScene().getWindow())).close();
+                 
+                }
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Advertencia");
+            alert.setContentText("Debes seleccionar proveedor");
+            alert.show();
+        }
+    
+    
     }
 
     @FXML

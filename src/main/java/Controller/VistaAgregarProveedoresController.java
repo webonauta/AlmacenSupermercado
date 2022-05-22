@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -40,8 +41,13 @@ public class VistaAgregarProveedoresController extends ProveedoresDAOImpl implem
     private TextField txtEmpresa;
     @FXML
     private TextField txtRFC;
+    private boolean actualizar = false;
+    @FXML
+    private Label lblProveedores;
+    @FXML
+    private Button btnRegresar;
     
-
+    private ProveedorDTO proveedor;
     /**
      * Initializes the controller class.
      */
@@ -57,10 +63,22 @@ public class VistaAgregarProveedoresController extends ProveedoresDAOImpl implem
     }
     
     @FXML
-    private void registrarProveedor(ActionEvent event) {
+    private void registrarProveedor(ActionEvent event) throws IOException {
         ProveedorDTO proveedor = new ProveedorDTO(txtNombre.getText(), txtPaterno.getText(), txtMaterno.getText(), txtTelefono.getText(), txtDireccion.getText(),txtEmpresa.getText(), txtRFC.getText());
+        int id = getIdProveedor(this.proveedor.getRfc());
         System.out.println(proveedor);
-        insertarProveedor(proveedor);
+        
+        
+        if(actualizar == false){
+           insertarProveedor(proveedor);
+           //System.out.println("Insertando");
+       }else{
+           
+           //System.out.println("Id = "+id);
+           actualizarProveedor(proveedor,id);
+           lanzarSiguienteVentana("VistaProveedores.fxml");
+           
+       }
           
     }
     
@@ -79,6 +97,25 @@ public class VistaAgregarProveedoresController extends ProveedoresDAOImpl implem
             
             ((Stage) (btnAgregarProveedor.getScene().getWindow())).close();
     }
-
+     
+    public void Actualizar(){
+        
+        this.actualizar = true;
+    } 
+    
+     public void setProveedor(ProveedorDTO proveedor){
+        this.proveedor = proveedor;
+        txtNombre.setText(proveedor.getNombre());
+        txtPaterno.setText(proveedor.getPaterno());
+        txtMaterno.setText(proveedor.getMaterno());
+        txtDireccion.setText(proveedor.getDireccion());
+        txtEmpresa.setText(proveedor.getEmpresa());
+        txtRFC.setText(proveedor.getRfc());
+        txtTelefono.setText(proveedor.getTelefono());
+    }
+    
+    public void setEtiquetaProveedor(){
+        lblProveedores.setText("Actualizar proveedor");
+    }
     
 }
