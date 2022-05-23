@@ -1,6 +1,6 @@
 package controller;
 
-import DAO.ClientesDAO;
+import Controller.VistaAgregarClientesController;
 import DAO.impl.ClientesDAOImpl;
 import Model.ClienteDTO;
 import java.io.IOException;
@@ -110,7 +110,43 @@ public class VistaClientesController extends ClientesDAOImpl implements Initiali
     
 
     @FXML
-    private void actualizarCliente(ActionEvent event) {
+    private void actualizarCliente(ActionEvent event) throws IOException {
+        Stage ventanaAgregarCliente = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        AnchorPane root = (AnchorPane)loader.load(getClass().getResource("/View/VistaAgregarClientes.fxml").openStream());
+        //creo instancia del controlador de la ventana VistaAgregarProducto
+        VistaAgregarClientesController controladorCliente = (VistaAgregarClientesController)loader.getController();
+        
+         if(clienteSeleccionado != null){
+            
+              Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "¿Actualizar cliente seleccionado?", ButtonType.YES, ButtonType.NO);
+
+              // clicking X also means no
+              ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+
+              if (!ButtonType.NO.equals(result)) {
+                  //invoco metodos publicos del controlador instanciado
+                  controladorCliente.Actualizar();
+                  controladorCliente.setEtiquetaProducto();
+                  controladorCliente.setProducto(clienteSeleccionado);
+                  
+                  Scene scene = new Scene(root);
+                  ventanaAgregarCliente.setScene(scene);
+                  ventanaAgregarCliente.alwaysOnTopProperty();
+                  ventanaAgregarCliente.initModality(Modality.APPLICATION_MODAL);
+                  ventanaAgregarCliente.show();
+                  
+                   ((Stage) (btnAgregarCliente.getScene().getWindow())).close();
+                 
+                }
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Advertencia");
+            alert.setContentText("Debes seleccionar cliente");
+            alert.show();
+        }
     }
 
     @FXML

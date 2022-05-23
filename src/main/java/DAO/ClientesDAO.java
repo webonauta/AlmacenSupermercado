@@ -14,5 +14,9 @@ public interface ClientesDAO {
     
     public void eliminarCliente(ClienteDTO cliente);
     
-     public ObservableList<ClienteDTO> getClientes();
+    public ObservableList<ClienteDTO> getClientes();
+    
+    public int getIdCliente(String paterno,String materno,String nombre);
+    
+    public void actualizarCliente(ClienteDTO cliente , int id);
 }

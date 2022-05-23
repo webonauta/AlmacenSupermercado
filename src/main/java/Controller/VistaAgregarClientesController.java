@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -42,6 +43,10 @@ public class VistaAgregarClientesController extends ClientesDAOImpl implements I
     private TextField txtDireccion;
     @Inject
     private ClientesDAO c;
+    private boolean actualizar = false;
+    private ClienteDTO cliente;
+    @FXML
+    private Label lblClientes;
     /**
      * Initializes the controller class.
      */
@@ -57,10 +62,19 @@ public class VistaAgregarClientesController extends ClientesDAOImpl implements I
     
  
     @FXML
-    private void agregarCliente(ActionEvent event) {
-        
+    private void agregarCliente(ActionEvent event) throws IOException {
+        int id = getIdCliente(this.cliente.getApellidoPaterno(),this.cliente.getApellidoMaterno(),this.cliente.getNombre());
         ClienteDTO cliente = new ClienteDTO(txtNombre.getText(),txtPaterno.getText(), txtMaterno.getText(), txtTelefono.getText(), txtDireccion.getText());
-        insertarCliente(cliente);
+        
+        
+        if(actualizar == false){
+           insertarCliente(cliente);
+           //System.out.println("Insertando");
+       }else{
+           actualizarCliente(cliente,id);
+           lanzarSiguienteVentana("VistaClientes.fxml");
+           
+       }
     }
     
      private void lanzarSiguienteVentana(String vista) throws IOException{
@@ -77,6 +91,24 @@ public class VistaAgregarClientesController extends ClientesDAOImpl implements I
             primaryStage.show();
             
             ((Stage) (btnAgregarCliente.getScene().getWindow())).close();
+    }
+     
+      public void Actualizar(){
+        
+        this.actualizar = true;
+    } 
+    
+    public void setProducto(ClienteDTO cliente){
+        this.cliente = cliente;
+        txtNombre.setText(cliente.getNombre());
+        txtPaterno.setText(cliente.getApellidoPaterno());
+        txtMaterno.setText(cliente.getApellidoMaterno());
+        txtTelefono.setText(cliente.getTelefono());
+        txtDireccion.setText(cliente.getDireccion());
+    }
+    
+    public void setEtiquetaProducto(){
+        lblClientes.setText("Actualizar cliente");
     }
     
 }
