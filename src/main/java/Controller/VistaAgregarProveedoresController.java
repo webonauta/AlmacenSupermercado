@@ -11,7 +11,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -58,7 +60,14 @@ public class VistaAgregarProveedoresController extends ProveedoresDAOImpl implem
 
     @FXML
     private void regresar(ActionEvent event) throws IOException {
-        lanzarSiguienteVentana("VistaProveedores.fxml");
+              Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "¿Deseas regresar?", ButtonType.YES, ButtonType.NO);
+
+              // clicking X also means no
+              ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+
+              if (!ButtonType.NO.equals(result)) {
+                    lanzarSiguienteVentana("VistaProveedores.fxml");
+              }
 
     }
     

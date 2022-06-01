@@ -14,7 +14,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -73,7 +75,15 @@ public class VistaAgregarProductosController extends ProductosDAOImpl implements
 
     @FXML
     private void regresar(ActionEvent event) throws IOException {
-        lanzarSiguienteVentana("VistaProductos.fxml");
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "¿Deseas regresar?", ButtonType.YES, ButtonType.NO);
+
+              // clicking X also means no
+              ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+
+              if (!ButtonType.NO.equals(result)) {
+        
+                    lanzarSiguienteVentana("VistaProductos.fxml");
+              }
 
     }
   
