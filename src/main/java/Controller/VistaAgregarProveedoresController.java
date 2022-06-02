@@ -74,7 +74,7 @@ public class VistaAgregarProveedoresController extends ProveedoresDAOImpl implem
     @FXML
     private void registrarProveedor(ActionEvent event) throws IOException {
         ProveedorDTO proveedor = new ProveedorDTO(txtNombre.getText(), txtPaterno.getText(), txtMaterno.getText(), txtTelefono.getText(), txtDireccion.getText(),txtEmpresa.getText(), txtRFC.getText());
-        int id = getIdProveedor(this.proveedor.getRfc());
+      
         System.out.println(proveedor);
         
         
@@ -83,7 +83,7 @@ public class VistaAgregarProveedoresController extends ProveedoresDAOImpl implem
            //System.out.println("Insertando");
        }else{
            
-           //System.out.println("Id = "+id);
+           int id = getIdProveedor(this.proveedor.getRfc());
            actualizarProveedor(proveedor,id);
            lanzarSiguienteVentana("VistaProveedores.fxml");
            

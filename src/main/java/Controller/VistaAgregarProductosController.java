@@ -90,7 +90,7 @@ public class VistaAgregarProductosController extends ProductosDAOImpl implements
     @FXML
     private void agregarProducto(ActionEvent event) throws IOException {
        ProductoDTO producto = new ProductoDTO();
-       int id = getIdProducto(this.producto.getClave());
+      
        
        String clave = txtClave.getText();
        String nombre = txtNombre.getText();
@@ -122,6 +122,7 @@ public class VistaAgregarProductosController extends ProductosDAOImpl implements
            insertarProducto(producto);
            //System.out.println("Insertando");
        }else{
+           int id = getIdProducto(this.producto.getClave());
            actualizarProducto(producto,id);
            lanzarSiguienteVentana("VistaProductos.fxml");
            

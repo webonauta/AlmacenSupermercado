@@ -73,7 +73,7 @@ public class VistaAgregarClientesController extends ClientesDAOImpl implements I
  
     @FXML
     private void agregarCliente(ActionEvent event) throws IOException {
-        int id = getIdCliente(this.cliente.getApellidoPaterno(),this.cliente.getApellidoMaterno(),this.cliente.getNombre());
+        
         ClienteDTO cliente = new ClienteDTO(txtNombre.getText(),txtPaterno.getText(), txtMaterno.getText(), txtTelefono.getText(), txtDireccion.getText());
         
         
@@ -81,6 +81,7 @@ public class VistaAgregarClientesController extends ClientesDAOImpl implements I
            insertarCliente(cliente);
            //System.out.println("Insertando");
        }else{
+           int id = getIdCliente(this.cliente.getApellidoPaterno(),this.cliente.getApellidoMaterno(),this.cliente.getNombre());
            actualizarCliente(cliente,id);
            lanzarSiguienteVentana("VistaClientes.fxml");
            
