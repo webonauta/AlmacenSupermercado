@@ -73,19 +73,30 @@ public class VistaAgregarProveedoresController extends ProveedoresDAOImpl implem
     
     @FXML
     private void registrarProveedor(ActionEvent event) throws IOException {
+        Alert alert = null;
         ProveedorDTO proveedor = new ProveedorDTO(txtNombre.getText(), txtPaterno.getText(), txtMaterno.getText(), txtTelefono.getText(), txtDireccion.getText(),txtEmpresa.getText(), txtRFC.getText());
       
         System.out.println(proveedor);
         
         
         if(actualizar == false){
-           insertarProveedor(proveedor);
-           //System.out.println("Insertando");
+             alert =  new Alert(Alert.AlertType.CONFIRMATION, "¿Deseas registrar un nuevo proveedor?", ButtonType.YES, ButtonType.NO);
+            // clicking X also means no
+            ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+
+            if (!ButtonType.NO.equals(result)) {
+                insertarProveedor(proveedor);
+            }
        }else{
-           
-           int id = getIdProveedor(this.proveedor.getRfc());
-           actualizarProveedor(proveedor,id);
-           lanzarSiguienteVentana("VistaProveedores.fxml");
+            alert =  new Alert(Alert.AlertType.CONFIRMATION, "¿Deseas aztualizar proveedor?", ButtonType.YES, ButtonType.NO);
+            // clicking X also means no
+            ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+
+            if (!ButtonType.NO.equals(result)) {
+                int id = getIdProveedor(this.proveedor.getRfc());
+                actualizarProveedor(proveedor,id);
+                lanzarSiguienteVentana("VistaProveedores.fxml");
+            }
            
        }
           

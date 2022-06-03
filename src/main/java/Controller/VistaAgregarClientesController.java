@@ -73,17 +73,33 @@ public class VistaAgregarClientesController extends ClientesDAOImpl implements I
  
     @FXML
     private void agregarCliente(ActionEvent event) throws IOException {
+         Alert alert = null;
+
+             
         
         ClienteDTO cliente = new ClienteDTO(txtNombre.getText(),txtPaterno.getText(), txtMaterno.getText(), txtTelefono.getText(), txtDireccion.getText());
         
         
         if(actualizar == false){
-           insertarCliente(cliente);
+            alert =  new Alert(Alert.AlertType.CONFIRMATION, "¿Deseas registrar un nuevo cliente?", ButtonType.YES, ButtonType.NO);
+             // clicking X also means no
+              ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+
+              if (!ButtonType.NO.equals(result)) {
+                    insertarCliente(cliente);
+              }
+           
            //System.out.println("Insertando");
        }else{
-           int id = getIdCliente(this.cliente.getApellidoPaterno(),this.cliente.getApellidoMaterno(),this.cliente.getNombre());
-           actualizarCliente(cliente,id);
-           lanzarSiguienteVentana("VistaClientes.fxml");
+            alert =  new Alert(Alert.AlertType.CONFIRMATION, "¿Deseas aztualizar cliente?", ButtonType.YES, ButtonType.NO);
+             // clicking X also means no
+              ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+
+              if (!ButtonType.NO.equals(result)) {
+                int id = getIdCliente(this.cliente.getApellidoPaterno(),this.cliente.getApellidoMaterno(),this.cliente.getNombre());
+                actualizarCliente(cliente,id);
+                lanzarSiguienteVentana("VistaClientes.fxml");
+              }
            
        }
     }

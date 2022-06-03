@@ -89,7 +89,8 @@ public class VistaAgregarProductosController extends ProductosDAOImpl implements
   
     @FXML
     private void agregarProducto(ActionEvent event) throws IOException {
-       ProductoDTO producto = new ProductoDTO();
+        Alert alert = null;
+        ProductoDTO producto = new ProductoDTO();
       
        
        String clave = txtClave.getText();
@@ -119,12 +120,24 @@ public class VistaAgregarProductosController extends ProductosDAOImpl implements
        producto.setPrecioVenta(precioVenta);
      
        if(actualizar == false){
-           insertarProducto(producto);
-           //System.out.println("Insertando");
+           alert =  new Alert(Alert.AlertType.CONFIRMATION, "¿Deseas registrar un nuevo producto?", ButtonType.YES, ButtonType.NO);
+            // clicking X also means no
+            ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+
+            if (!ButtonType.NO.equals(result)) {
+                insertarProducto(producto);
+            }
+           
        }else{
-           int id = getIdProducto(this.producto.getClave());
-           actualizarProducto(producto,id);
-           lanzarSiguienteVentana("VistaProductos.fxml");
+            alert =  new Alert(Alert.AlertType.CONFIRMATION, "¿Deseas aztualizar producto?", ButtonType.YES, ButtonType.NO);
+            // clicking X also means no
+            ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+
+            if (!ButtonType.NO.equals(result)) {
+                int id = getIdProducto(this.producto.getClave());
+                actualizarProducto(producto,id);
+                lanzarSiguienteVentana("VistaProductos.fxml");
+            }
            
        }
        
